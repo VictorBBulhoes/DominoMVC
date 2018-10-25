@@ -1,6 +1,12 @@
+/*Integrantes:
+Breno Goes do Amaral        RA00212782
+Gabrielle Ramos da Silva    RA00207256
+Victor Barbosa Bulhoes      RA00207194
+*/
 
 #include "dominoView.h"
 #include "dominoModel.h"
+
 int mostrarMenuDomino()
 {
     bool Opvalido = true;
@@ -52,5 +58,6 @@ void regrasJogo()
 	printf(" Cada jogador deve iniciar o jogo com 7 peças.\n");
 	printf(" O jogo jogador que inicia é aquele que possui a peça 6:6.\n Caso não tenha, inicia aquele com o dobre mais alto.\n");
 	printf(" O jogo ocorre em sentido anti-horário.\n");
-	printf(" Os jogadores devem colocar peças que tenham os mesmos números\ndas peças que se encontram na ponta do jogo.\n");
+	printf(" Os jogadores devem colocar peças que tenham os mesmos números\n das peças que se encontram nas pontas do jogo.\n");
+    printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
