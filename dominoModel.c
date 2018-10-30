@@ -25,3 +25,26 @@ int gerarPecas(tipo_Peca *Ppeca){
 
 
 }
+
+int embaralharPecas(int pecas[28])
+{
+	int i;
+	int aux;
+	int randomico;
+	
+	srand (time(NULL));
+	
+	for(i = 0; i < 28; i++){
+		
+		pecas[i] = i;
+		
+	}
+	
+	for(i = 0; i < 28; i++){
+		aux = pecas[i];
+		randomico = rand() % 27;
+		pecas[i] = pecas[randomico];
+		pecas[randomico] = aux;
+	}
+	
+}

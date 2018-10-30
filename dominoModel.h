@@ -13,5 +13,5 @@ typedef struct Peca{
 
 //Funcoes do Model
 int gerarPecas(tipo_Peca *Ppeca);
-void embaralharPecas();		//A ser implementada
-void distribuirPecas();		//A ser implementada
+int embaralharPecas(int pecas[28]);	//A ser implementada
+//void distribuirPecas();		//A ser implementada
