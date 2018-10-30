@@ -3,8 +3,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#include "dominoModel.h"
+
 //Funcoes do View
 int mostrarMenuDomino();
-int modoJogo();
-void regrasJogo();
-void mostrarMesa();     // A ser implementada
+//int modoJogo();
+//void regrasJogo();
+void mostrarPecasJogador(tipo_Peca Ppeca, pecasJogador, int qtdPecas);    // PUXAR PECASJOGADOR DA FUNCAO PRINCIPAL
