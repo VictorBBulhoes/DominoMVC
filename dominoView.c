@@ -47,7 +47,7 @@ int modoJogo()
         printf(" 2 - Multiplayer\n");
         printf(" Entre com um dos modos: ");
         scanf("%d", &modo);
-            if (modo < 1 || modo > 2){
+        if (modo < 1 || modo > 2){
             modovalido = false;
             printf("\n*******************OPCAO INVALIDA!*******************\n");
         }
