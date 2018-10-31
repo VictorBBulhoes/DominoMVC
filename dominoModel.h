@@ -22,5 +22,6 @@ tipo_Peca *Ppeca;
 void gerarPecas(tipo_Peca Peca);
 int embaralharPecas(int pecas[28]);	//A ser implementada
 void distribuirPecas(int pecas[28]);		//A ser implementada
+void desembaralharPecas(int pecas[28]);
 
 #endif
