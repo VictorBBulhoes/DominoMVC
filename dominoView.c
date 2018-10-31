@@ -70,6 +70,8 @@ void mostrarPecasJogador(tipo_Peca Ppeca, pecasJogador, int qtdPecas)
 	
 	int i;
 	
+	printf("\n");
+	
 	for(i = 0; i < qtdPecas; i++){ // Display das peças da mesa
 		
 		printf("|%d|%d|\t", Ppeca.num1, Ppeca.num2);
