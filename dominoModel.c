@@ -46,5 +46,22 @@ int embaralharPecas(int pecas[28])
 		pecas[i] = pecas[randomico];
 		pecas[randomico] = aux;
 	}
+	return (pecas[28]);
+}
+
+void distribuirPecas(int pecas[28]){
+	int i; 
+	int pecasJogador[20];
+	int pecasComp[20];
+	
+	for(i=0; i<7 ; i++){              //distribui as 7 primeiras peças para o jogador
+		pecasJogador[i] = pecas[i];
+	} 
+	
+	for(i=7; i<14 ; i++){             //distribui as 7 seguintes peças para o computador
+		pecasComp[i] = pecas[i];
+	} 
 	
 }
+
+
