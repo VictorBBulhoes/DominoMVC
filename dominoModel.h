@@ -15,3 +15,4 @@ typedef struct Peca{
 int gerarPecas(tipo_Peca *Ppeca);
 int embaralharPecas(int pecas[28]);	//A ser implementada
 //void distribuirPecas();		//A ser implementada
+void desembaralharPecas(int pecas[28]);
