@@ -7,6 +7,8 @@ Victor Barbosa Bulhoes      RA00207194
 #include "dominoView.h"
 #include "dominoModel.h"
 
+#include "dominoModel.h"
+
 int mostrarMenuDomino()
 {
     bool Opvalido = true;
@@ -69,3 +71,31 @@ void regrasJogo()
 	printf(" Os jogadores devem colocar peças que tenham os mesmos números\n das peças que se encontram nas pontas do jogo.\n");
     printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
+
+
+void mostrarPecasJogador(tipo_Peca Ppeca, pecasJogador, int qtdPecas)
+{
+	
+	int i;
+	
+	printf("\n");
+	
+	for(i = 0; i < qtdPecas; i++){ // Display das pe�as da mesa
+		
+		printf("|%d|%d|\t", Ppeca.num1, Ppeca.num2);
+		
+	}
+	
+	printf("\n");
+	
+}
+
+
+
+
+
+
+
+
+
+
