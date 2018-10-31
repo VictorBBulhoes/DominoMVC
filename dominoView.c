@@ -26,7 +26,11 @@ int mostrarMenuDomino()
         printf(" Entre com uma das opções: ");
         scanf("%d", &Op);
         if (Op < 1 || Op > 4){
+            printf("\n*******************OPCAO INVALIDA!*******************\n");
             Opvalido = false;
+        }
+        else{
+            Opvalido = true;
         }
         setbuf(stdin,NULL);
 
@@ -47,6 +51,10 @@ int modoJogo()
         scanf("%d", &modo);
         if (modo < 1 || modo > 2){
             modovalido = false;
+            printf("\n*******************OPCAO INVALIDA!*******************\n");
+        }
+        else{
+            modovalido = true;
         }
         setbuf(stdin,NULL);
     }while (!modovalido);

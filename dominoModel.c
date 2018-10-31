@@ -26,7 +26,7 @@ int gerarPecas(tipo_Peca *Ppeca){
 	}
 }
 
-int embaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peças. Usado sempre que peças serão mostradas na tela
+int embaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peÃ§as. Usado sempre que peÃ§as serÃ£o mostradas na tela
 {
 	int i;
 	int aux;
@@ -46,10 +46,25 @@ int embaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peças. Usado
 		pecas[i] = pecas[randomico];
 		pecas[randomico] = aux;
 	}
+	return (pecas[28]);
+}
+
+void distribuirPecas(int pecas[28]){
+	int i; 
+	int pecasJogador[20];
+	int pecasComp[20];
+	
+	for(i=0; i<7 ; i++){              //distribui as 7 primeiras peÃ§as para o jogador
+		pecasJogador[i] = pecas[i];
+	} 
+	
+	for(i=7; i<14 ; i++){             //distribui as 7 seguintes peÃ§as para o computador
+		pecasComp[i] = pecas[i];
+	} 
 	
 }
 
-void desembaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peças
+void desembaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peÃ§as
 {
 	int i;
 	

@@ -11,8 +11,11 @@ typedef struct Peca{
 
 } tipo_Peca[28];
 
+//Declaracao do ponteiro
+tipo_Peca *Ppeca;
+
 //Funcoes do Model
 int gerarPecas(tipo_Peca *Ppeca);
-int embaralharPecas(int pecas[28]);	//A ser implementada
-//void distribuirPecas();		//A ser implementada
+int embaralharPecas(int pecas[28]);
 void desembaralharPecas(int pecas[28]);
+void distribuirPecas(int pecas[28]);
