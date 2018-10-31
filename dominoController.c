@@ -11,6 +11,9 @@ Victor Barbosa Bulhoes      RA00207194
 void iniciarController(){
     bool fim = false;
     int acao = 0;
+
+    tipo_Peca Peca[28];
+
     do{
         acao = mostrarMenuDomino();
         fim = menuAcao(acao);
