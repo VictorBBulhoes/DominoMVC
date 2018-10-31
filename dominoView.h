@@ -10,3 +10,4 @@ int mostrarMenuDomino();
 //int modoJogo();
 //void regrasJogo();
 void mostrarPecasJogador(tipo_Peca Ppeca, pecasJogador, int qtdPecas);    // PUXAR PECASJOGADOR DA FUNCAO PRINCIPAL
+void mostrarBaralho(tipo_Peca Ppeca);

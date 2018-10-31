@@ -92,7 +92,12 @@ void mostrarPecasJogador(tipo_Peca Ppeca, pecasJogador, int qtdPecas)
 
 
 
+void mostrarBaralho(tipo_Peca Ppeca) // Onde essa funcao for chamada deve ter um loopdos IDs das pecas para mostrar todas as pecas
+{
 
+		printf("|%d|%d|\t", Ppeca.num1, Ppeca.num2);
+		
+}
 
 
 
