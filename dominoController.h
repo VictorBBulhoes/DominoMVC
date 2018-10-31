@@ -1,9 +1,10 @@
+#ifndef DOMINOCONTROLLER_H_INCLUDED
+#define DOMINOCONTROLLER_H_INCLUDED
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "dominoModel.h"
 
 //Funcoes do Controller
 void iniciarController();
 bool menuAcao();
 
+#endif

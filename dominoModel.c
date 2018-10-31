@@ -5,25 +5,27 @@ Victor Barbosa Bulhoes      RA00207194
 */
 
 #include "dominoModel.h"
+#include "dominoController.h"
 
-int gerarPecas(tipo_Peca *Ppeca){
-	int i, j, k;
+void gerarPecas(tipo_Peca Peca){
+
+	int i, j;
 	int id = 0;
-	k = 0;
+	int k = 0;
 
-	for(i = 0; i > 7; i++){
-		for(j = k; j > 7; j ++){
 
-			Ppeca[id]->num1 = i;
-			Ppeca[id]->num2 = j;
+	for(i = 0; i < 7; i++){
+		for(j = k; j < 7; j++){
+
+			Ppeca[id].num1 = i;
+			Ppeca[id].num2 = j;
 			//Ppeca->ID = id;
 
 			id++;
 			k++;
 		}
+		k = i + 1;
 	}
-
-
 }
 
 int embaralharPecas(int pecas[28])
@@ -31,15 +33,15 @@ int embaralharPecas(int pecas[28])
 	int i;
 	int aux;
 	int randomico;
-	
+
 	srand (time(NULL));
-	
+
 	for(i = 0; i < 28; i++){
-		
+
 		pecas[i] = i;
-		
+
 	}
-	
+
 	for(i = 0; i < 28; i++){
 		aux = pecas[i];
 		randomico = rand() % 27;
@@ -50,18 +52,18 @@ int embaralharPecas(int pecas[28])
 }
 
 void distribuirPecas(int pecas[28]){
-	int i; 
+	int i;
 	int pecasJogador[20];
 	int pecasComp[20];
-	
+
 	for(i=0; i<7 ; i++){              //distribui as 7 primeiras peças para o jogador
 		pecasJogador[i] = pecas[i];
-	} 
-	
+	}
+
 	for(i=7; i<14 ; i++){             //distribui as 7 seguintes peças para o computador
 		pecasComp[i] = pecas[i];
-	} 
-	
+	}
+
 }
 
 

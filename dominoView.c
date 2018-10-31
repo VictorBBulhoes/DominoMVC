@@ -7,8 +7,6 @@ Victor Barbosa Bulhoes      RA00207194
 #include "dominoView.h"
 #include "dominoModel.h"
 
-#include "dominoModel.h"
-
 int mostrarMenuDomino()
 {
     bool Opvalido = true;
@@ -73,21 +71,21 @@ void regrasJogo()
 }
 
 
-void mostrarPecasJogador(tipo_Peca Ppeca, pecasJogador, int qtdPecas)
+void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
 {
-	
+
 	int i;
-	
+
 	printf("\n");
-	
+
 	for(i = 0; i < qtdPecas; i++){ // Display das peças da mesa
-		
-		printf("|%d|%d|\t", Ppeca.num1, Ppeca.num2);
-		
+
+		printf("|%d|%d|\t", Peca.num1, Peca.num2);
+
 	}
-	
+
 	printf("\n");
-	
+
 }
 
 
