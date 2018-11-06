@@ -12,8 +12,6 @@ void iniciarController(){
     bool fim = false;
     int acao = 0;
 
-    tipo_Peca Peca[28];
-
     do{
         acao = mostrarMenuDomino();
         fim = menuAcao(acao);
@@ -36,12 +34,10 @@ bool menuAcao(acao){
         case 2:
             modo = modoJogo();
             if (modo == 1){
-                //Jogo Singleplayer... (Deletar o getchar() depois)
-                getchar();
+                jogoSingleplayer();
             }
             else if (modo == 2){
-                //Jogo Singleplayer... (Deletar o getchar() depois)
-                getchar();
+                jogoMultiplayer();
             }
             break;
 

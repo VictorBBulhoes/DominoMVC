@@ -16,12 +16,16 @@ typedef struct Peca{
 
 }tipo_Peca;
 
-tipo_Peca Peca;
-tipo_Peca *Ppeca;
+tipo_Peca pecas[28];        // Criacao do struct
+tipo_Peca *Ppeca[28];      //PONTEIRO TIPO STRUCT PARA AS PECAS (INUTIL POR ENQUANTO)
+int *PID[28];   // PONTEIRO TIPO INTEIRO PARA O ID
+
 //Funcoes do Model
-void gerarPecas(tipo_Peca Peca);
-int embaralharPecas(int pecas[28]);	//A ser implementada
-void distribuirPecas(int pecas[28]);		//A ser implementada
-void desembaralharPecas(int pecas[28]);
+void gerarPecas(tipo_Peca pecas[28]);
+void embaralharPecas(int *PID[28]);
+void distribuirPecas(tipo_Peca pecas[28], int *PID[28]);
+void desembaralharPecas(int *PID[28]);
+void jogoSingleplayer();        // "main" do jogo singleplayer
+void jogoMultiplayer();         // "main" do jogo multiplayer
 
 #endif
