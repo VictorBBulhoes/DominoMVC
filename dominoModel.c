@@ -80,11 +80,23 @@ void desembaralharPecas(int *PID[28]) // pecas[28] se refere ao ID das peças
 void jogoSingleplayer()
 {
     // 1) Gerar pecas dos jogadores
-    // 2)
-    // Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    //
+    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+    // 3) Embaralhar Pecas
+    // 4) Distribuir Pecas
+    // 5) Rola o jogo
+    // 6) Desembaralha as pecas
+    // 7) Recomeca ou termina o jogo
+    ///Dar opcao de parar no meio e salvar o progresso do jogo
 }
 
 void jogoMultiplayer()
 {
+    // 1) Gerar pecas dos jogadores
+    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+    // 3) Embaralhar Pecas
+    // 4) Distribuir Pecas
+    // 5) Rola o jogo
+    // 6) Desembaralha as pecas
+    // 7) Recomeca ou termina o jogo
+    ///Dar opcao de parar no meio e salvar o progresso do jogo
 }
