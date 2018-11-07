@@ -84,6 +84,23 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 
 }
 
+void mostrarPecas(tipo_Peca pecas[28])
+{
+	int i, j, k;
+	k = 0;
+	
+	for(i = 0; i < 28; i++){
+		
+		for(j = k; j < 7; j++){
+			
+			printf("\t|%d|%d|", pecas[i].num1, pecas[i].num2);
+			
+			k++;
+		}
+		printf("\n");
+	}
+}
+
 void jogoSingleplayerVirgem()
 {
     tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
@@ -94,6 +111,9 @@ void jogoSingleplayerVirgem()
 
     // 1) Gerar pecas dos jogadores
     gerarPecas(pecas);
+    
+    // 1.5) Mostrar as pecas para o jogador
+    mostrarPecas(pecas);
 
     // 2) Embaralhar Pecas
     embaralharPecas(PID);
@@ -102,6 +122,7 @@ void jogoSingleplayerVirgem()
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
 
     // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+    determinarPrimeiro(pecas, pecasJogador, pecasComp, PID);
 
     // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
     // 6) Desembaralha as pecas
