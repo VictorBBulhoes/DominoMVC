@@ -24,7 +24,11 @@ int mostrarMenuDomino()
         printf(" Entre com uma das opções: ");
         scanf("%d", &Op);
         if (Op < 1 || Op > 4){
+            printf("\n*******************OPCAO INVALIDA!*******************\n");
             Opvalido = false;
+        }
+        else{
+            Opvalido = true;
         }
         setbuf(stdin,NULL);
 
@@ -45,6 +49,10 @@ int modoJogo()
         scanf("%d", &modo);
         if (modo < 1 || modo > 2){
             modovalido = false;
+            printf("\n*******************OPCAO INVALIDA!*******************\n");
+        }
+        else{
+            modovalido = true;
         }
         setbuf(stdin,NULL);
     }while (!modovalido);
@@ -61,3 +69,36 @@ void regrasJogo()
 	printf(" Os jogadores devem colocar peças que tenham os mesmos números\n das peças que se encontram nas pontas do jogo.\n");
     printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
+
+
+void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
+{
+
+	int i;
+
+	printf("\n");
+
+	for(i = 0; i < qtdPecas; i++){ // Display das pe�as da mesa
+
+		printf("|%d|%d|\t", Peca.num1, Peca.num2);
+
+	}
+
+	printf("\n");
+
+}
+
+
+
+void mostrarBaralho(tipo_Peca Ppeca) // Onde essa funcao for chamada deve ter um loopdos IDs das pecas para mostrar todas as pecas
+{
+
+		printf("|%d|%d|\t", Ppeca.num1, Ppeca.num2);
+		
+}
+
+
+
+
+
+
