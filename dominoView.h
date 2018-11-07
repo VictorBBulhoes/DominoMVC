@@ -11,5 +11,6 @@ void mostrarPecasJogador(tipo_Peca Ppeca, int pecasJogador, int qtdPecas);    //
 void mostrarBaralho(tipo_Peca Ppeca);
 int modoJogoSingle();
 int modoJogoMulti();
+void menuJogada();
 
 #endif // DOMINOVIEW_H_INCLUDED
