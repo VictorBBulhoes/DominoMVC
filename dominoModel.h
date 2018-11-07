@@ -22,7 +22,7 @@ void embaralharPecas(int PID[28]);
 void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[20], int pecasComp[20]);
 void desembaralharPecas(int PID[28]);
 void jogoSingleplayerVirgem();        // "main" do jogo singleplayer virgem
-void jogoSingleplayerCarregado();     // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
+void jogoSingleplayerCarregado();    // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
 void jogoMultiplayerVirgem();         // "main" do jogo multiplayer
 void jogoMultiplayerCarregado();      // "main" do jogo carregado por arquivo multiplayer   (A ser implementada)
 #endif

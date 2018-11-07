@@ -70,7 +70,6 @@ void regrasJogo()
     printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
 
-
 void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
 {
 
@@ -88,8 +87,6 @@ void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
 
 }
 
-
-
 void mostrarBaralho(tipo_Peca Ppeca) // Onde essa funcao for chamada deve ter um loopdos IDs das pecas para mostrar todas as pecas
 {
 
@@ -97,8 +94,57 @@ void mostrarBaralho(tipo_Peca Ppeca) // Onde essa funcao for chamada deve ter um
 		
 }
 
+int modoJogoSingle()
+{
+	int modoSingle = 0;
+	bool modoValido = true
+	
+	do{
+		printf("\n\t\t\t Modo Singleplayer");
+		printf("\n**************************************************************\n\n");
+		printf(" 1 - Jogo Novo\n");
+		printf(" 2 - Carregar Jogo\n");
+		printf("Entre com uma das opções: ");
+		scanf("%d", &modoSingle);
+		if (modoSingle < 1 || modoSingle > 2){
+			modoValido = false;
+            printf("\n*******************OPÇâO INVALIDA!*******************\n");
+        }
+        else{
+            modoValido = true;
+        }
+        setbuf(stdin,NULL);	
+		
+	}while (!modoValido);
 
+	return modoSingle;
+}
 
+int modoJogoMulti()
+{
+	int modoMulti = 0;
+	bool modoValido = true
+	
+	do{
+		printf("\n\t\t\t Modo Multiplayer");
+		printf("\n**************************************************************\n\n");
+		printf(" 1 - Jogo Novo\n");
+		printf(" 2 - Carregar Jogo\n");
+		printf("Entre com uma das opções: ");
+		scanf("%d", &modoMulti);
+		if (modoMulti < 1 || modoMulti > 2){
+			modoValido = false;
+            printf("\n*******************OPÇâO INVALIDA!*******************\n");
+        }
+        else{
+            modoValido = true;
+        }
+        setbuf(stdin,NULL);	
+		
+	}while (!modoValido);
+
+	return modoMulti;
+}
 
 
 

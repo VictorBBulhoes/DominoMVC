@@ -24,6 +24,8 @@ bool menuAcao(int acao){
 
     bool fim = false;
     int modo = 0;
+    int modoSingle = 0;
+    int modoMulti = 0;
 
 	switch(acao){
         case 1:
@@ -34,12 +36,22 @@ bool menuAcao(int acao){
         case 2:
             modo = modoJogo();
             if (modo == 1){
-                /*Criar switch case com escolha para caso Carregado ou para caso Virgem)*/
-                jogoSingleplayerVirgem();
+				modoSingle = modoJogoSingle();
+                if (modoSingle ==1){
+                	jogoSingleplayerVirgem();
+				}
+                else if (modoSingle == 2){
+                	//jogoSingleplayerVirgem();
+				}
             }
-            else if (modo == 2){
-                /*Criar switch case com escolha para caso Carregado ou para caso Virgem)*/
-                jogoMultiplayerVirgem(); // A ser implementada
+            else if (modo == 2)
+                modoMulti = modoJogoMulti();
+				if (modoMulti == 1){
+					jogoMultiplayerVirgem(); // A ser implementada
+				}
+				else if (modoMulti == 2){
+					//jogoMultiplayerCarregado();
+				}
             }
             break;
 
