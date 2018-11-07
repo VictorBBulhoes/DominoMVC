@@ -39,12 +39,12 @@ bool menuAcao(int acao){
 		modoSingle = modoJogoSingle();
                 if (modoSingle ==1){
                 	jogoSingleplayerVirgem();
-				}
+		}
                 else if (modoSingle == 2){
                 	//jogoSingleplayerCarregado();
-				}
+		}
             }
-            else if (modo == 2)
+            else if (modo == 2){
               	 modoMulti = modoJogoMulti();
 		 if (modoMulti == 1){
 			jogoMultiplayerVirgem(); // A ser implementada
