@@ -8,7 +8,8 @@ Victor Barbosa Bulhoes      RA00207194
 #include "dominoController.h"
 
 
-void gerarPecas(tipo_Peca Peca){
+void gerarPecas(tipo_Peca pecas[28])
+{
 
 	int i, j;
 	int id = 0;
@@ -17,9 +18,8 @@ void gerarPecas(tipo_Peca Peca){
 	for(i = 0; i < 7; i++){
 		for(j = k; j < 7; j++){
 
-			Ppeca[id].num1 = i;
-			Ppeca[id].num2 = j;
-			//Ppeca->ID = id;
+			pecas[id].num1 = i;
+			pecas[id].num2 = j;
 
 			id++;
 			k++;
@@ -28,7 +28,7 @@ void gerarPecas(tipo_Peca Peca){
 	}
 }
 
-int embaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peças. Usado sempre que peças serão mostradas na tela
+void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado sempre que peças serão mostradas na tela
 {
 	int i;
 	int aux;
@@ -38,41 +38,79 @@ int embaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peças. Usad
 
 	for(i = 0; i < 28; i++){
 
-		pecas[i] = i;
+		PID[i] = i;
 
 	}
 
 	for(i = 0; i < 28; i++){
-		aux = pecas[i];
+		aux = PID[i];
 		randomico = rand() % 27;
-		pecas[i] = pecas[randomico];
-		pecas[randomico] = aux;
+        PID[i] = PID[randomico]; // Erro de segmentacao aqui
+		PID[randomico] = aux;
 	}
-	return (pecas[28]);
 }
 
-void distribuirPecas(int pecas[28]){
+void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[20], int pecasComp[20])
+{
 	int i;
-	int pecasJogador[20];
+	/*int pecasJogador[20];
 	int pecasComp[20];
-
+    */
 	for(i=0; i<7 ; i++){              //distribui as 7 primeiras pe�as para o jogador
-		pecasJogador[i] = pecas[i];
+		pecasJogador[i] = PID[i];
 	}
 
 	for(i=7; i<14 ; i++){             //distribui as 7 seguintes pe�as para o computador
 
-		pecasComp[i] = pecas[i];
+		pecasComp[i] = PID[i];
 	}
 
 }
 
-void desembaralharPecas(int pecas[28]) // pecas[28] se refere ao ID das peças
+void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 {
 	int i;
-	
+
 	for(i = 0; i < 28; i++){
-		pecas[i] = i;
+		PID[i] = i;
 	}
-	
+
+}
+
+void jogoSingleplayerVirgem()
+{
+    tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
+    int PID[28];   // Criacao do ID de cada peca
+    int pecasJogador[20];  // Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[20];     //Criacao do vetor que armazena as pecas do computador
+
+    // 1) Gerar pecas dos jogadores
+    gerarPecas(pecas);
+
+    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+
+    // 3) Embaralhar Pecas
+    embaralharPecas(PID);
+
+    // 4) Distribuir Pecas
+    distribuirPecas(pecas, PID, pecasJogador, pecasComp);
+
+    // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
+    // 6) Desembaralha as pecas
+    desembaralharPecas(PID);
+
+    // 7) Recomeca ou termina o jogo    (A ser implementada)
+    ///Dar opcao de parar no meio e salvar o progresso do jogo
+}
+
+void jogoMultiplayerVirgem()
+{
+    // 1) Gerar pecas dos jogadores
+    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+    // 3) Embaralhar Pecas
+    // 4) Distribuir Pecas
+    // 5) Rola o jogo
+    // 6) Desembaralha as pecas
+    // 7) Recomeca ou termina o jogo
+    ///Dar opcao de parar no meio e salvar o progresso do jogo
 }

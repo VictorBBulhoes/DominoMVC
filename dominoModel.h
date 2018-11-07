@@ -8,7 +8,7 @@
 #include <ctype.h>
 #include <time.h>
 
-//Struct para armazenar as pecas do jogo
+//Declaracao do struct para armazenar as pecas do jogo
 typedef struct Peca{
 
 	int num1;	// Numero de um lado da peca
@@ -16,12 +16,13 @@ typedef struct Peca{
 
 }tipo_Peca;
 
-tipo_Peca Peca;
-tipo_Peca *Ppeca;
 //Funcoes do Model
-void gerarPecas(tipo_Peca Peca);
-int embaralharPecas(int pecas[28]);	//A ser implementada
-void distribuirPecas(int pecas[28]);		//A ser implementada
-void desembaralharPecas(int pecas[28]);
-
+void gerarPecas(tipo_Peca pecas[28]);
+void embaralharPecas(int PID[28]);
+void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[20], int pecasComp[20]);
+void desembaralharPecas(int PID[28]);
+void jogoSingleplayerVirgem();        // "main" do jogo singleplayer virgem
+void jogoSingleplayerCarregado();     // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
+void jogoMultiplayerVirgem();         // "main" do jogo multiplayer
+void jogoMultiplayerCarregado();      // "main" do jogo carregado por arquivo multiplayer   (A ser implementada)
 #endif

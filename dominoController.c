@@ -12,8 +12,6 @@ void iniciarController(){
     bool fim = false;
     int acao = 0;
 
-    tipo_Peca Peca[28];
-
     do{
         acao = mostrarMenuDomino();
         fim = menuAcao(acao);
@@ -22,7 +20,7 @@ void iniciarController(){
 
 
 
-bool menuAcao(acao){
+bool menuAcao(int acao){
 
     bool fim = false;
     int modo = 0;
@@ -36,12 +34,12 @@ bool menuAcao(acao){
         case 2:
             modo = modoJogo();
             if (modo == 1){
-                //Jogo Singleplayer... (Deletar o getchar() depois)
-                getchar();
+                /*Criar switch case com escolha para caso Carregado ou para caso Virgem)*/
+                jogoSingleplayerVirgem();
             }
             else if (modo == 2){
-                //Jogo Singleplayer... (Deletar o getchar() depois)
-                getchar();
+                /*Criar switch case com escolha para caso Carregado ou para caso Virgem)*/
+                jogoMultiplayerVirgem(); // A ser implementada
             }
             break;
 
