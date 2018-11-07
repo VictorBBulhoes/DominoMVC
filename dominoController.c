@@ -36,35 +36,32 @@ bool menuAcao(int acao){
         case 2:
             modo = modoJogo();
             if (modo == 1){
-				modoSingle = modoJogoSingle();
+		modoSingle = modoJogoSingle();
                 if (modoSingle ==1){
                 	jogoSingleplayerVirgem();
 				}
                 else if (modoSingle == 2){
-                	//jogoSingleplayerVirgem();
+                	//jogoSingleplayerCarregado();
 				}
             }
             else if (modo == 2)
-                modoMulti = modoJogoMulti();
-				if (modoMulti == 1){
-					jogoMultiplayerVirgem(); // A ser implementada
-				}
-				else if (modoMulti == 2){
-					//jogoMultiplayerCarregado();
-				}
+              	 modoMulti = modoJogoMulti();
+		 if (modoMulti == 1){
+			jogoMultiplayerVirgem(); // A ser implementada
+		}
+		else if (modoMulti == 2){
+			//jogoMultiplayerCarregado();
+		}
             }
             break;
 
-		case 3:
+	case 3:
 
             break;
 
-		case 4:
-			fim = true;
+	case 4:
+		fim = true;
             break;
     }
     return fim;
 }
-
-
-
