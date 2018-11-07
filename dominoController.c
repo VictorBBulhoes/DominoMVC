@@ -20,7 +20,7 @@ void iniciarController(){
 
 
 
-bool menuAcao(acao){
+bool menuAcao(int acao){
 
     bool fim = false;
     int modo = 0;
@@ -34,10 +34,12 @@ bool menuAcao(acao){
         case 2:
             modo = modoJogo();
             if (modo == 1){
-                jogoSingleplayer();
+                /*Criar switch case com escolha para caso Carregado ou para caso Virgem)*/
+                jogoSingleplayerVirgem();
             }
             else if (modo == 2){
-                jogoMultiplayer();
+                /*Criar switch case com escolha para caso Carregado ou para caso Virgem)*/
+                jogoMultiplayerVirgem(); // A ser implementada
             }
             break;
 

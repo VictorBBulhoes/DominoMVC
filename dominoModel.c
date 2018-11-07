@@ -28,7 +28,7 @@ void gerarPecas(tipo_Peca pecas[28])
 	}
 }
 
-void embaralharPecas(int *PID[28]) // pecas[28] se refere ao ID das peças. Usado sempre que peças serão mostradas na tela
+void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado sempre que peças serão mostradas na tela
 {
 	int i;
 	int aux;
@@ -45,17 +45,17 @@ void embaralharPecas(int *PID[28]) // pecas[28] se refere ao ID das peças. Usad
 	for(i = 0; i < 28; i++){
 		aux = PID[i];
 		randomico = rand() % 27;
-        PID[i] = PID[randomico];
+        PID[i] = PID[randomico]; // Erro de segmentacao aqui
 		PID[randomico] = aux;
 	}
 }
 
-void distribuirPecas(tipo_Peca pecas[28], int *PID[28])
+void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[20], int pecasComp[20])
 {
 	int i;
-	int pecasJogador[20];
+	/*int pecasJogador[20];
 	int pecasComp[20];
-
+    */
 	for(i=0; i<7 ; i++){              //distribui as 7 primeiras pe�as para o jogador
 		pecasJogador[i] = PID[i];
 	}
@@ -67,7 +67,7 @@ void distribuirPecas(tipo_Peca pecas[28], int *PID[28])
 
 }
 
-void desembaralharPecas(int *PID[28]) // pecas[28] se refere ao ID das peças
+void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 {
 	int i;
 
@@ -77,19 +77,33 @@ void desembaralharPecas(int *PID[28]) // pecas[28] se refere ao ID das peças
 
 }
 
-void jogoSingleplayer()
+void jogoSingleplayerVirgem()
 {
+    tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
+    int PID[28];   // Criacao do ID de cada peca
+    int pecasJogador[20];  // Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[20];     //Criacao do vetor que armazena as pecas do computador
+
     // 1) Gerar pecas dos jogadores
+    gerarPecas(pecas);
+
     // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+
     // 3) Embaralhar Pecas
+    embaralharPecas(PID);
+
     // 4) Distribuir Pecas
-    // 5) Rola o jogo
+    distribuirPecas(pecas, PID, pecasJogador, pecasComp);
+
+    // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
     // 6) Desembaralha as pecas
-    // 7) Recomeca ou termina o jogo
+    desembaralharPecas(PID);
+
+    // 7) Recomeca ou termina o jogo    (A ser implementada)
     ///Dar opcao de parar no meio e salvar o progresso do jogo
 }
 
-void jogoMultiplayer()
+void jogoMultiplayerVirgem()
 {
     // 1) Gerar pecas dos jogadores
     // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
