@@ -134,12 +134,33 @@ void jogoSingleplayerVirgem()
 
 void jogoMultiplayerVirgem()
 {
+	tipo_Peca pecas[28];		//Criacao do struct dentro do jogo
+    int PID[28];				// Criacao do ID de cada peca
+    int pecasJogadorUm[21];		// Criacao do vetor que armazena as pecas do jogador
+    int pecasJogadorDois[21];	//Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];		// Vetor que armazena as pecas da pilha de compra
+    
+    
     // 1) Gerar pecas dos jogadores
-    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    // 3) Embaralhar Pecas
-    // 4) Distribuir Pecas
+    gerarPecas(pecas);
+    
+    // 2) Embaralhar Pecas
+    embaralharPecas(PID);
+    
+    // 3) Distribuir Pecas
+    distribuirPecas(pecas, PID, pecasJogadorUm, pecasJogadorDois, pecasCompra);
+    
+    // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+    determinarPrimeiro(pecas, pecasJogadorUm, pecasJogadorDois, PID);
+    
     // 5) Rola o jogo
+    
+    
     // 6) Desembaralha as pecas
+    desembaralharPecas(PID);
+    
     // 7) Recomeca ou termina o jogo
+    
+    
     ///Dar opcao de parar no meio e salvar o progresso do jogo
 }
