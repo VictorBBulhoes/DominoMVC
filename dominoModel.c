@@ -84,6 +84,23 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 
 }
 
+void mostrarPecas(tipo_Peca pecas[28])
+{
+	int i, j, k;
+	k = 0;
+	
+	for(i = 0; i < 28; i++){
+		
+		for(j = k; j < 7; j++){
+			
+			printf("\t|%d|%d|", pecas[i].num1, pecas[i].num2);
+			
+			k++;
+		}
+		printf("\n");
+	}
+}
+
 void jogoSingleplayerVirgem()
 {
     tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
@@ -94,13 +111,16 @@ void jogoSingleplayerVirgem()
 
     // 1) Gerar pecas dos jogadores
     gerarPecas(pecas);
+    
+    // 1.5) Mostrar as pecas para o jogador
+    mostrarPecas(pecas);
 
     // 2) Embaralhar Pecas
     embaralharPecas(PID);
 
     // 3) Distribuir Pecas
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
-
+  
     // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
     comecarPrimeiro(pecasJogador, pecasComp);
     // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
@@ -113,12 +133,33 @@ void jogoSingleplayerVirgem()
 
 void jogoMultiplayerVirgem()
 {
+	tipo_Peca pecas[28];		//Criacao do struct dentro do jogo
+    int PID[28];				// Criacao do ID de cada peca
+    int pecasJogadorUm[21];		// Criacao do vetor que armazena as pecas do jogador
+    int pecasJogadorDois[21];	//Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];		// Vetor que armazena as pecas da pilha de compra
+    
+    
     // 1) Gerar pecas dos jogadores
-    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    // 3) Embaralhar Pecas
-    // 4) Distribuir Pecas
+    gerarPecas(pecas);
+    
+    // 2) Embaralhar Pecas
+    embaralharPecas(PID);
+    
+    // 3) Distribuir Pecas
+    distribuirPecas(pecas, PID, pecasJogadorUm, pecasJogadorDois, pecasCompra);
+    
+    // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
+    comecarPrimeiro(pecasJogador, pecasComp);
+    
     // 5) Rola o jogo
+    
+    
     // 6) Desembaralha as pecas
+    desembaralharPecas(PID);
+    
     // 7) Recomeca ou termina o jogo
+    
+    
     ///Dar opcao de parar no meio e salvar o progresso do jogo
 }
