@@ -152,14 +152,14 @@ void mostrarPecas(tipo_Peca pecas[28])
 	int i, j, k;
 	k = 0;
 
-	for(i = 0; i < 28; i++){
+	for(i = 0; i < 7; i++){
+		printf("\n");
 
 		for(j = k; j < 7; j++){
 
 			printf("\t|%d|%d|", pecas[i].num1, pecas[i].num2);
 
-			k++;
 		}
-		printf("\n");
+		k = k + 1;
 	}
 }
