@@ -87,18 +87,11 @@ void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
 
 }
 
-void mostrarBaralho(tipo_Peca Ppeca) // Onde essa funcao for chamada deve ter um loopdos IDs das pecas para mostrar todas as pecas
-{
-
-		printf("|%d|%d|\t", Ppeca.num1, Ppeca.num2);
-		
-}
-
 int modoJogoSingle()
 {
 	int modoSingle = 0;
-	bool modoValido = true
-	
+	bool modoValido = true;
+
 	do{
 		printf("\n\t\t\t Modo Singleplayer");
 		printf("\n**************************************************************\n\n");
@@ -113,8 +106,8 @@ int modoJogoSingle()
         else{
             modoValido = true;
         }
-        setbuf(stdin,NULL);	
-		
+        setbuf(stdin,NULL);
+
 	}while (!modoValido);
 
 	return modoSingle;
@@ -123,8 +116,8 @@ int modoJogoSingle()
 int modoJogoMulti()
 {
 	int modoMulti = 0;
-	bool modoValido = true
-	
+	bool modoValido = true;
+
 	do{
 		printf("\n\t\t\t Modo Multiplayer");
 		printf("\n**************************************************************\n\n");
@@ -139,8 +132,8 @@ int modoJogoMulti()
         else{
             modoValido = true;
         }
-        setbuf(stdin,NULL);	
-		
+        setbuf(stdin,NULL);
+
 	}while (!modoValido);
 
 	return modoMulti;
@@ -148,8 +141,25 @@ int modoJogoMulti()
 
 void menuJogada()
 {
-	
+
 	printf("1) Jogar Peca		2) Comprar Peca 	3) Salvar e Sair	4) Sair sem Salvar\n");
 	printf(">");
-	
+
+}
+
+void mostrarPecas(tipo_Peca pecas[28])
+{
+	int i, j, k;
+	k = 0;
+
+	for(i = 0; i < 28; i++){
+
+		for(j = k; j < 7; j++){
+
+			printf("\t|%d|%d|", pecas[i].num1, pecas[i].num2);
+
+			k++;
+		}
+		printf("\n");
+	}
 }

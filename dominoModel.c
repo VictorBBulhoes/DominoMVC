@@ -4,6 +4,7 @@ Gabrielle Ramos da Silva    RA00207256
 Victor Barbosa Bulhoes      RA00207194
 */
 
+#include "dominoView.h"
 #include "dominoModel.h"
 #include "dominoController.h"
 
@@ -84,22 +85,39 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 
 }
 
-void mostrarPecas(tipo_Peca pecas[28])
-{
-	int i, j, k;
-	k = 0;
-	
-	for(i = 0; i < 28; i++){
-		
-		for(j = k; j < 7; j++){
-			
-			printf("\t|%d|%d|", pecas[i].num1, pecas[i].num2);
-			
-			k++;
+
+int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]){
+    /*int i = 0, j = 0;
+    bool peca27namesa = false;
+
+    for(i = 0; i < 14; i++){
+        if (pecasCompra[i] == 27){
+            peca27namesa = true;
+        }
+    }
+
+    return primeiro;*/
+   /* int i, j, k;
+	k = 2;
+	int maiorPecaJog1, maiorPecaJog2; // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
+
+
+
+	for(i = 27; i >= 0; i - k){
+
+		for(j = 0; j < 7; j ++){
+
+			if(i == pecasJogador[j]){
+
+				maiorPecaJog1 = i;
+				return
+
+			}
 		}
-		printf("\n");
+	k++;
 	}
-}
+
+}*/
 
 void jogoSingleplayerVirgem()
 {
@@ -108,58 +126,21 @@ void jogoSingleplayerVirgem()
     int pecasJogador[21];  // Criacao do vetor que armazena as pecas do jogador
     int pecasComp[21];     //Criacao do vetor que armazena as pecas do computador
     int pecasCompra[14];
-
-    // 1) Gerar pecas dos jogadores
+    int PrimeiroJogador = 0;
+    // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
-    
-    // 1.5) Mostrar as pecas para o jogador
-    mostrarPecas(pecas);
-
-    // 2) Embaralhar Pecas
+    mostrarPecas(pecas);        // arrumar
     embaralharPecas(PID);
-
-    // 3) Distribuir Pecas
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
-  
-    // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    comecarPrimeiro(pecasJogador, pecasComp);
-    // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
-    // 6) Desembaralha as pecas
-    desembaralharPecas(PID);
+    //PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
+    //desembaralharPecas(PID);
 
-    // 7) Recomeca ou termina o jogo    (A ser implementada)
+
     ///Dar opcao de parar no meio e salvar o progresso do jogo
+    getchar();
 }
 
-void jogoMultiplayerVirgem()
+/*void jogoMultiplayerVirgem()
 {
-	tipo_Peca pecas[28];		//Criacao do struct dentro do jogo
-    int PID[28];				// Criacao do ID de cada peca
-    int pecasJogadorUm[21];		// Criacao do vetor que armazena as pecas do jogador
-    int pecasJogadorDois[21];	//Criacao do vetor que armazena as pecas do computador
-    int pecasCompra[14];		// Vetor que armazena as pecas da pilha de compra
-    
-    
-    // 1) Gerar pecas dos jogadores
-    gerarPecas(pecas);
-    
-    // 2) Embaralhar Pecas
-    embaralharPecas(PID);
-    
-    // 3) Distribuir Pecas
-    distribuirPecas(pecas, PID, pecasJogadorUm, pecasJogadorDois, pecasCompra);
-    
-    // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    comecarPrimeiro(pecasJogador, pecasComp);
-    
-    // 5) Rola o jogo
-    
-    
-    // 6) Desembaralha as pecas
-    desembaralharPecas(PID);
-    
-    // 7) Recomeca ou termina o jogo
-    
-    
-    ///Dar opcao de parar no meio e salvar o progresso do jogo
-}
+
+}*/
