@@ -120,10 +120,9 @@ void jogoSingleplayerVirgem()
 
     // 3) Distribuir Pecas
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
-
+  
     // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    determinarPrimeiro(pecas, pecasJogador, pecasComp, PID);
-
+    comecarPrimeiro(pecasJogador, pecasComp);
     // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
     // 6) Desembaralha as pecas
     desembaralharPecas(PID);
@@ -151,7 +150,7 @@ void jogoMultiplayerVirgem()
     distribuirPecas(pecas, PID, pecasJogadorUm, pecasJogadorDois, pecasCompra);
     
     // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    determinarPrimeiro(pecas, pecasJogadorUm, pecasJogadorDois, PID);
+    comecarPrimeiro(pecasJogador, pecasComp);
     
     // 5) Rola o jogo
     
