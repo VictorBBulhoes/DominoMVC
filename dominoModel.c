@@ -87,37 +87,54 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 
 
 int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]){
-    /*int i = 0, j = 0;
-    bool peca27namesa = false;
 
-    for(i = 0; i < 14; i++){
-        if (pecasCompra[i] == 27){
-            peca27namesa = true;
-        }
-    }
+    int i, j, k = 1;
+	int maiorPecaJog1 = -1, maiorPecaComp = -1; // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
 
-    return primeiro;*/
-   /* int i, j, k;
-	k = 2;
-	int maiorPecaJog1, maiorPecaJog2; // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
-
-
-
-	for(i = 27; i >= 0; i - k){
+	for(i = 27; i >= 0; i = i - k){
 
 		for(j = 0; j < 7; j ++){
 
 			if(i == pecasJogador[j]){
 
 				maiorPecaJog1 = i;
-				return
+				break;
 
 			}
 		}
-	k++;
+		if(maiorPecaJog1 > -1){
+            break;
+		}
+        k++;
 	}
 
-}*/
+	k = 1;
+
+	for(i = 27; i >= 0; i = i - k){
+
+		for(j = 0; j < 7; j ++){
+
+			if(i == pecasComp[j]){
+
+				maiorPecaComp = i;
+				break;
+
+			}
+		}
+		if(maiorPecaComp > -1){
+            break;
+		}
+        k++;
+	}
+
+	if(maiorPecaJog1 > maiorPecaComp){
+        return 1;
+	}
+	else if (maiorPecaJog1 < maiorPecaComp){
+        return 2;
+	}
+
+}
 
 void jogoSingleplayerVirgem()
 {
@@ -127,13 +144,14 @@ void jogoSingleplayerVirgem()
     int pecasComp[21];     //Criacao do vetor que armazena as pecas do computador
     int pecasCompra[14];
     int PrimeiroJogador = 0;
+
     // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
     mostrarPecas(pecas);        // arrumar
     embaralharPecas(PID);
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
-    //PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
-    //desembaralharPecas(PID);
+    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
+    //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
 
 
     ///Dar opcao de parar no meio e salvar o progresso do jogo

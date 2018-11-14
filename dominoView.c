@@ -149,7 +149,7 @@ void menuJogada()
 
 void mostrarPecas(tipo_Peca pecas[28])
 {
-	int i, j, k;
+	int i, j, k, o = 0;
 	k = 0;
 
 	for(i = 0; i < 7; i++){
@@ -157,9 +157,10 @@ void mostrarPecas(tipo_Peca pecas[28])
 
 		for(j = k; j < 7; j++){
 
-			printf("\t|%d|%d|", pecas[i].num1, pecas[i].num2);
-
+			printf("\t|%d|%d|", pecas[o].num1, pecas[o].num2);
+            o++;
 		}
 		k = k + 1;
+
 	}
 }

@@ -47,7 +47,7 @@ bool menuAcao(int acao){
             else if (modo == 2){
               	 modoMulti = modoJogoMulti();
                  if (modoMulti == 1){
-                     jogoMultiplayerVirgem(); // A ser implementada
+                //jogoMultiplayerVirgem(); // A ser implementada
                  }
                  else if (modoMulti == 2){
                  //jogoMultiplayerCarregado();
