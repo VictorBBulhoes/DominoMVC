@@ -4,6 +4,7 @@ Gabrielle Ramos da Silva    RA00207256
 Victor Barbosa Bulhoes      RA00207194
 */
 
+#include "dominoView.h"
 #include "dominoModel.h"
 #include "dominoController.h"
 
@@ -50,20 +51,27 @@ void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado
 	}
 }
 
-void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[20], int pecasComp[20])
+void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14])
 {
 	int i;
-	/*int pecasJogador[20];
-	int pecasComp[20];
-    */
-	for(i=0; i<7 ; i++){              //distribui as 7 primeiras pe�as para o jogador
+	int k = 0;
+
+	for(i = 0; i < 7 ; i++){              //distribui as 7 primeiras pe�as para o jogador
 		pecasJogador[i] = PID[i];
 	}
 
-	for(i=7; i<14 ; i++){             //distribui as 7 seguintes pe�as para o computador
+	for(i = 7; i < 14 ; i++){             //distribui as 7 seguintes pe�as para o computador
 
-		pecasComp[i] = PID[i];
+		pecasComp[k] = PID[i];
+		k++;
 	}
+
+    k = 0;
+
+    for(i = 14; i < 28; i++){
+        pecasCompra[k] = PID[i];
+        k++;
+    }
 
 }
 
@@ -77,40 +85,80 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 
 }
 
+
+int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]){
+
+    int i, j, k = 1;
+	int maiorPecaJog1 = -1, maiorPecaComp = -1; // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
+
+	for(i = 27; i >= 0; i = i - k){
+
+		for(j = 0; j < 7; j ++){
+
+			if(i == pecasJogador[j]){
+
+				maiorPecaJog1 = i;
+				break;
+
+			}
+		}
+		if(maiorPecaJog1 > -1){
+            break;
+		}
+        k++;
+	}
+
+	k = 1;
+
+	for(i = 27; i >= 0; i = i - k){
+
+		for(j = 0; j < 7; j ++){
+
+			if(i == pecasComp[j]){
+
+				maiorPecaComp = i;
+				break;
+
+			}
+		}
+		if(maiorPecaComp > -1){
+            break;
+		}
+        k++;
+	}
+
+	if(maiorPecaJog1 > maiorPecaComp){
+        return 1;
+	}
+	else if (maiorPecaJog1 < maiorPecaComp){
+        return 2;
+	}
+
+}
+
 void jogoSingleplayerVirgem()
 {
     tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
     int PID[28];   // Criacao do ID de cada peca
-    int pecasJogador[20];  // Criacao do vetor que armazena as pecas do jogador
-    int pecasComp[20];     //Criacao do vetor que armazena as pecas do computador
+    int pecasJogador[21];  // Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[21];     //Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];
+    int PrimeiroJogador = 0;
 
-    // 1) Gerar pecas dos jogadores
+    // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
-
-    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-
-    // 3) Embaralhar Pecas
+    mostrarPecas(pecas);        // arrumar
     embaralharPecas(PID);
+    distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
+    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
+    //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
 
-    // 4) Distribuir Pecas
-    distribuirPecas(pecas, PID, pecasJogador, pecasComp);
 
-    // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
-    // 6) Desembaralha as pecas
-    desembaralharPecas(PID);
-
-    // 7) Recomeca ou termina o jogo    (A ser implementada)
     ///Dar opcao de parar no meio e salvar o progresso do jogo
+    getchar();
 }
 
-void jogoMultiplayerVirgem()
+/*void jogoMultiplayerVirgem()
 {
-    // 1) Gerar pecas dos jogadores
-    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-    // 3) Embaralhar Pecas
-    // 4) Distribuir Pecas
-    // 5) Rola o jogo
-    // 6) Desembaralha as pecas
-    // 7) Recomeca ou termina o jogo
-    ///Dar opcao de parar no meio e salvar o progresso do jogo
-}
+
+}*/
