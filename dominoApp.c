@@ -8,6 +8,7 @@ Victor Barbosa Bulhoes      RA00207194
 
 int main ()
 {
+    setlocale(LC_ALL, "Portuguese");
     iniciarController();
     return 0;
 }

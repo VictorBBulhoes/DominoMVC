@@ -7,6 +7,8 @@
 #include<stdbool.h>
 #include <ctype.h>
 #include <time.h>
+#include <locale.h>
+
 
 //Declaracao do struct para armazenar as pecas do jogo
 typedef struct Peca{
@@ -25,5 +27,6 @@ void jogoSingleplayerVirgem();        // "main" do jogo singleplayer virgem
 void jogoSingleplayerCarregado();    // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
 void jogoMultiplayerVirgem();         // "main" do jogo multiplayer
 void jogoMultiplayerCarregado();      // "main" do jogo carregado por arquivo multiplayer   (A ser implementada
-int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);
+int  comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);
+void limparTelaHibrido();       //Limpa a tela para os sistemas operacionais Windows e Linux
 #endif

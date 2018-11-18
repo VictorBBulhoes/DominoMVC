@@ -46,7 +46,7 @@ void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado
 	for(i = 0; i < 28; i++){
 		aux = PID[i];
 		randomico = rand() % 27;
-        PID[i] = PID[randomico]; // Erro de segmentacao aqui
+        PID[i] = PID[randomico];
 		PID[randomico] = aux;
 	}
 }
@@ -139,15 +139,15 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 void jogoSingleplayerVirgem()
 {
     tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
-    int PID[28];   // Criacao do ID de cada peca
-    int pecasJogador[21];  // Criacao do vetor que armazena as pecas do jogador
-    int pecasComp[21];     //Criacao do vetor que armazena as pecas do computador
+    int PID[28];               // Criacao do ID de cada peca
+    int pecasJogador[21];      // Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[21];         //Criacao do vetor que armazena as pecas do computador
     int pecasCompra[14];
     int PrimeiroJogador = 0;
 
     // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
-    mostrarPecas(pecas);        // arrumar
+    mostrarPecas(pecas);
     embaralharPecas(PID);
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
     PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
@@ -162,3 +162,12 @@ void jogoSingleplayerVirgem()
 {
 
 }*/
+
+void limparTelaHibrido()
+{
+    #if defined(_WIN32)
+        system("cls");
+    #elif defined(__linux__)
+        system("clear");
+    #endif
+}
