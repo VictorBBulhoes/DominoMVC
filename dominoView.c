@@ -86,25 +86,6 @@ void regrasJogo()
     printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
 
-/// FUNCAO DESATUALIZADA
-/*void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int PID)
-{
-
-	int i;
-
-	printf("\n");
-
-	for(i = 0; i < qtdPecas; i++)   // Display das peças da mesa
-	{
-
-		printf("|%d|%d|\t", Peca.num1, Peca.num2);
-
-	}
-
-	printf("\n");
-
-}*/
-
 int menuJogada(int acaoJogo)
 {
 	printf("1) Jogar Peca   2) Comprar Peca     3) Salvar   4) Menu Principal\n");
@@ -130,4 +111,14 @@ void mostrarPecas(tipo_Peca pecas[28])
 		k = k + 1;
 
 	}
+}
+
+void mostrarMesa()
+{
+
+}
+
+void mostrarPecasJogador()
+{
+
 }
