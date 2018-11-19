@@ -187,7 +187,9 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 
     while(!fimDoJogo){
        limparTelaHibrido();
-       //Aqui ele precisa mostrar as pecas em jogo, as pecas para comprar, e as pecas do jogador
+       //Aqui ele precisa mostrar as pecas em jogo e as pecas do jogador
+       /*mostrarMesa();
+       mostrarPecasJogador();*/
        acaoJogo =  menuJogada(acaoJogo);
         switch(acaoJogo){
             case 1:         // Jogar peca
