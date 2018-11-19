@@ -10,7 +10,7 @@
 #include <locale.h>
 
 
-//Declaracao do struct para armazenar as pecas do jogo
+/// DECLARACAO DO STRUCT PARA ARMAZENAR AS PECAS DO JOGO
 typedef struct Peca{
 
 	int num1;	// Numero de um lado da peca
@@ -18,15 +18,16 @@ typedef struct Peca{
 
 }tipo_Peca;
 
-//Funcoes do Model
-void gerarPecas(tipo_Peca pecas[28]);
-void embaralharPecas(int PID[28]);
-void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);
-void desembaralharPecas(int PID[28]);
-void jogoSingleplayerVirgem();        // "main" do jogo singleplayer virgem
-void jogoSingleplayerCarregado();    // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
-void jogoMultiplayerVirgem();         // "main" do jogo multiplayer
-void jogoMultiplayerCarregado();      // "main" do jogo carregado por arquivo multiplayer   (A ser implementada
-int  comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);
-void limparTelaHibrido();       //Limpa a tela para os sistemas operacionais Windows e Linux
+///FUNCOES TIPO VOID
+void gerarPecas(tipo_Peca pecas[28]);           // Gera as pecas de domino.
+void embaralharPecas(int PID[28]);              // Embaralha as pecas de domino
+void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);        // Distribue as pecas de domino para cada jogador
+void desembaralharPecas(int PID[28]);           // Desembaralha as pecas de domino.
+void jogoSingleplayerVirgem();                  // "main" do jogo singleplayer virgem
+void jogoSingleplayerCarregado();               // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
+void jogoMultiplayerVirgem();                   // "main" do jogo multiplayer
+void jogoMultiplayerCarregado();                // "main" do jogo carregado por arquivo multiplayer   (A ser implementada
+void limparTelaHibrido();                       //Limpa a tela para os sistemas operacionais Windows e Linux
+///FUNCOES TIPO INT
+int  comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);      // Decide qual jogador comeca primeiro de acordo com as regras de inicio de jogo.
 #endif

@@ -15,13 +15,14 @@ void iniciarController(){
     do{
         acao = mostrarMenuDomino();
         limparTelaHibrido();
-        fim = menuAcao(acao);
+        fim = switAcao(acao);
     }while(!fim);
 }
 
 
 
-bool menuAcao(int acao){
+bool switAcao(int acao)
+{
 
     bool fim = false;
     int modo = 0;
@@ -29,6 +30,7 @@ bool menuAcao(int acao){
 	switch(acao){
         case 1:             //Regras do jogo
             regrasJogo();
+            setbuf(stdin,NULL);
             getchar();
             limparTelaHibrido();
             break;
@@ -42,6 +44,7 @@ bool menuAcao(int acao){
             }
             else if (modo == 2)
             {
+                limparTelaHibrido();
                 //jogoMultiplayerVirgem();      //Falta ser implementada
             }
             break;

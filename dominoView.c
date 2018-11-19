@@ -86,7 +86,8 @@ void regrasJogo()
     printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
 
-void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
+/// FUNCAO DESATUALIZADA
+/*void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int PID)
 {
 
 	int i;
@@ -102,7 +103,7 @@ void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
 
 	printf("\n");
 
-}
+}*/
 
 void menuJogada()
 {
