@@ -18,20 +18,20 @@ typedef struct Peca{
 
 }tipo_Peca;
 
-///FUNCOES TIPO VOID
-void gerarPecas(tipo_Peca pecas[28]);           // Gera as pecas de domino.
-void embaralharPecas(int PID[28]);              // Embaralha as pecas de domino.
-void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);        // Distribue as pecas de domino para cada jogador
-void desembaralharPecas(int PID[28]);           // Desembaralha as pecas de domino.
-void jogoSingleplayerVirgem();                  // "main" do jogo singleplayer virgem.
-void jogoSingleplayerCarregado();               // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
-void jogoMultiplayerVirgem();                   // "main" do jogo multiplayer.
-void jogoMultiplayerCarregado();                // "main" do jogo carregado por arquivo multiplayer   (A ser implementada)
-void limparTelaHibrido();                       // Limpa a tela para os sistemas operacionais Windows e Linux.
-void pausaEstrategica();                        // Pausa o programa e espera o usuario apertar enter.
-void zerarVetorPecas(int vetor[28]);            // Atribui -1 para todas as posicoes do vetor pecasMesa.
+//FUNCOES TIPO VOID
+void gerarPecas(tipo_Peca pecas[28]);           /// Gera as pecas de domino.
+void embaralharPecas(int PID[28]);              /// Embaralha as pecas de domino.
+void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);        /// Distribue as pecas de domino para cada jogador
+void desembaralharPecas(int PID[28]);           /// Desembaralha as pecas de domino.
+void jogoSingleplayerVirgem();                  /// "main" do jogo singleplayer virgem.
+void jogoSingleplayerCarregado();               /// "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
+void jogoMultiplayerVirgem();                   /// "main" do jogo multiplayer.
+void jogoMultiplayerCarregado();                /// "main" do jogo carregado por arquivo multiplayer   (A ser implementada)
+void limparTelaHibrido();                       /// Limpa a tela para os sistemas operacionais Windows e Linux.
+void pausaEstrategica();                        /// Pausa o programa e espera o usuario apertar enter.
+void zerarVetorPecas(int vetor[28]);            /// Atribui -1 para todas as posicoes do vetor pecasMesa.
 
-///FUNCOES TIPO INT
+//FUNCOES TIPO INT
 int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int posPecaJogador[1], int posPecaComp[1]);      // Decide qual jogador comeca primeiro de acordo com as regras de inicio de jogo.
 int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasMesa[28], int pecasCompra[14], int PrimeiroJogador);
 #endif
