@@ -46,7 +46,7 @@ void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado
 	for(i = 0; i < 28; i++){
 		aux = PID[i];
 		randomico = rand() % 27;
-        PID[i] = PID[randomico]; // Erro de segmentacao aqui
+        PID[i] = PID[randomico];
 		PID[randomico] = aux;
 	}
 }
@@ -86,7 +86,7 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 }
 
 
-int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]){
+int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int posPecaJogador[1], int posPecaComp[1]){
 
     int i, j, k = 1;
 	int maiorPecaJog1 = -1, maiorPecaComp = -1; // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
@@ -98,6 +98,7 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 			if(i == pecasJogador[j]){
 
 				maiorPecaJog1 = i;
+				posPecaJogador[0] = j;
 				break;
 
 			}
@@ -117,8 +118,12 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 			if(i == pecasComp[j]){
 
 				maiorPecaComp = i;
+				posPecaComp[0] = j;
 				break;
 
+			}
+			else if (maiorPecaJog1 == i){
+                break;
 			}
 		}
 		if(maiorPecaComp > -1){
@@ -128,9 +133,11 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 	}
 
 	if(maiorPecaJog1 > maiorPecaComp){
+        pecasMesa[13] = maiorPecaJog1;
         return 1;
 	}
 	else if (maiorPecaJog1 < maiorPecaComp){
+        pecasMesa[13] = maiorPecaComp;
         return 2;
 	}
 
@@ -138,27 +145,97 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 
 void jogoSingleplayerVirgem()
 {
-    tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
-    int PID[28];   // Criacao do ID de cada peca
-    int pecasJogador[21];  // Criacao do vetor que armazena as pecas do jogador
-    int pecasComp[21];     //Criacao do vetor que armazena as pecas do computador
-    int pecasCompra[14];
-    int PrimeiroJogador = 0;
+    tipo_Peca pecas[28];       // Criacao do struct dentro do jogo
+    int PID[28];               // Criacao do ID de cada peca
+    int pecasJogador[21];      // Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[21];         // Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];       // Criacao do vetor que armazena as pecas na mesa
+    int pecasMesa[28];         // Criacao do vetor que armazena as pecas jogadas em campo
+    int PrimeiroJogador = 0;   // Variavel que determina qual eh o primeiro jogador
+    int vencedor = 0;          // Variavel que determina qual eh o vencedor ( 1 para jogador1 e 2 para jogador2 ou Comp)
+    int i = 0;                 // Variavel de controle para o loop For
+    int posPecaJogador[1], posPecaComp[1];      // Gambiarra! (Pega as posicoes das maiores pecas de cada jogador)
 
     // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
-    mostrarPecas(pecas);        // arrumar
+    zerarVetorPecas(pecasMesa);
+    zerarVetorPecas(pecasComp);
+    zerarVetorPecas(pecasCompra);
+    zerarVetorPecas(pecasJogador);
+    mostrarPecas(pecas);
+    pausaEstrategica();
     embaralharPecas(PID);
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
-    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
+    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra, pecasMesa, posPecaJogador, posPecaComp);
     //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
 
 
-    ///Dar opcao de parar no meio e salvar o progresso do jogo
-    getchar();
+    // Jogo
+    vencedor = JogoSingle(pecas, PID, pecasJogador, pecasComp, pecasCompra, pecasMesa, PrimeiroJogador);
+    limparTelaHibrido();
 }
 
 /*void jogoMultiplayerVirgem()
 {
 
 }*/
+
+int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int PrimeiroJogador)
+{
+    int vencedor = 0, acaoJogo = 0;
+    bool fimDoJogo = false;
+
+    while(!fimDoJogo){
+       limparTelaHibrido();
+       //Aqui ele precisa mostrar as pecas em jogo e as pecas do jogador
+       /*mostrarMesa();
+       mostrarPecasJogador();*/
+       acaoJogo =  menuJogada(acaoJogo);
+        switch(acaoJogo){
+            case 1:         // Jogar peca
+
+                break;
+
+            case 2:         //  Comprar peca
+                break;
+
+            case 3:         // Salvar (Arquivo)
+                break;
+
+            case 4:         // Menu principal
+                fimDoJogo = true;
+                break;
+
+        }
+
+
+    }
+    return vencedor;
+
+}
+
+void zerarVetorPecas(int vetor[28])
+{
+    int i = 0;
+    for(i = 0; i < 28; i++)
+    {
+        vetor[i] = -1;
+    }
+
+}
+
+void pausaEstrategica()
+{
+    printf("\n\nPressione ENTER para continuar...\n\n");
+    setbuf(stdin,NULL);
+    getchar();
+}
+
+void limparTelaHibrido()
+{
+    #if defined(_WIN32)
+        system("cls");
+    #elif defined(__linux__)
+        system("clear");
+    #endif
+}

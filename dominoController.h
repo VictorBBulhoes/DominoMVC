@@ -3,8 +3,10 @@
 
 #include "dominoModel.h"
 
-//Funcoes do Controller
-void iniciarController();
-bool menuAcao();
+//FUNCOES TIPO VOID
+void iniciarController();               // Controla as funcoes e acoes do menu do jogo.
+
+//FUNCOES TIPO BOOL
+bool switAcao(int acao);                // Controla o switch case do menu do jogo.
 
 #endif

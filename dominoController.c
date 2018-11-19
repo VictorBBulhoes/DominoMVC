@@ -13,54 +13,60 @@ void iniciarController(){
     int acao = 0;
 
     do{
-        acao = mostrarMenuDomino();
-        fim = menuAcao(acao);
+        acao = mostrarMenuPrincipal();
+        limparTelaHibrido();
+        fim = switAcao(acao);
     }while(!fim);
 }
 
 
 
-bool menuAcao(int acao){
+bool switAcao(int acao)
+{
 
     bool fim = false;
     int modo = 0;
-    int modoSingle = 0;
-    int modoMulti = 0;
 
 	switch(acao){
-        case 1:
+        case 1:             //Regras do jogo
             regrasJogo();
+            setbuf(stdin,NULL);
             getchar();
+            limparTelaHibrido();
             break;
 
-        case 2:
+        case 2:             // Iniciar jogo
             modo = modoJogo();
-            if (modo == 1){
-                modoSingle = modoJogoSingle();
-                if (modoSingle ==1){
-                	jogoSingleplayerVirgem();
-                }
-                else if (modoSingle == 2){
-                	//jogoSingleplayerCarregado();
-                }
+            if (modo == 1)
+            {
+                limparTelaHibrido();
+                jogoSingleplayerVirgem();
             }
-            else if (modo == 2){
-              	 modoMulti = modoJogoMulti();
-                 if (modoMulti == 1){
-                //jogoMultiplayerVirgem(); // A ser implementada
-                 }
-                 else if (modoMulti == 2){
-                 //jogoMultiplayerCarregado();
-                 }
+            else if (modo == 2)
+            {
+                limparTelaHibrido();
+                //jogoMultiplayerVirgem();      //Falta ser implementada
             }
             break;
 
-        case 3:
-
+        case 3:             //Carregar jogo
+            modo = modoJogo();
+            if (modo == 1)
+            {
+                limparTelaHibrido();
+                //jogoSingleplayerCarregado();      //Falta ser implementada
+            }
+            else if (modo == 2)
+            {
+                limparTelaHibrido();
+                //jogoMultiplayerCarregado();       //Falta ser implementada
+            }
             break;
 
-        case 4:
+        case 4:              //Sair do jogo
             fim = true;
+            limparTelaHibrido();
+            //mensagemDeAdeus();      //Uma breve mensagem agradecendo o jogador/ os jogadores pelo tempo
             break;
     }
     return fim;
