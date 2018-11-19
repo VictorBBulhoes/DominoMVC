@@ -138,30 +138,69 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 
 void jogoSingleplayerVirgem()
 {
-    tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
+    tipo_Peca pecas[28];       // Criacao do struct dentro do jogo
     int PID[28];               // Criacao do ID de cada peca
     int pecasJogador[21];      // Criacao do vetor que armazena as pecas do jogador
-    int pecasComp[21];         //Criacao do vetor que armazena as pecas do computador
-    int pecasCompra[14];
-    int PrimeiroJogador = 0;
+    int pecasComp[21];         // Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];       // Criacao do vetor que armazena as pecas na mesa
+    int PrimeiroJogador = 0;   // Variavel que determina qual eh o primeiro jogador
+    int vencedor = 0;          // Variavel que determina qual eh o vencedor ( 1 para jogador1 e 2 para jogador2 ou Comp)
 
     // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
     mostrarPecas(pecas);
+    pausaEstrategica();
     embaralharPecas(PID);
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
     PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
     //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
 
-
-    ///Dar opcao de parar no meio e salvar o progresso do jogo
-    getchar();
+    // Jogo
+    vencedor = JogoSingle(pecas, PID, pecasJogador, pecasComp, pecasCompra, PrimeiroJogador);
+    limparTelaHibrido();
 }
 
 /*void jogoMultiplayerVirgem()
 {
 
 }*/
+
+int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int PrimeiroJogador)
+{
+    int vencedor = 0, acaoJogo = 0;
+    bool fimDoJogo = false;
+
+    while(!fimDoJogo){
+       acaoJogo =  menuJogada(acaoJogo);
+        switch(acaoJogo){
+            case 1:         // Jogar peca
+
+                break;
+
+            case 2:         //  Comprar peca
+                break;
+
+            case 3:         // Salvar (Arquivo)
+                break;
+
+            case 4:         // Menu principal
+                fimDoJogo = true;
+                break;
+
+        }
+
+
+    }
+    return vencedor;
+
+}
+
+void pausaEstrategica()
+{
+    printf("\n\nPressione ENTER para continuar...\n\n");
+    setbuf(stdin,NULL);
+    getchar();
+}
 
 void limparTelaHibrido()
 {

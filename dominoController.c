@@ -13,7 +13,7 @@ void iniciarController(){
     int acao = 0;
 
     do{
-        acao = mostrarMenuDomino();
+        acao = mostrarMenuPrincipal();
         limparTelaHibrido();
         fim = switAcao(acao);
     }while(!fim);
@@ -49,7 +49,7 @@ bool switAcao(int acao)
             }
             break;
 
-        case 3:         //Carregar jogo
+        case 3:             //Carregar jogo
             modo = modoJogo();
             if (modo == 1)
             {
@@ -63,7 +63,7 @@ bool switAcao(int acao)
             }
             break;
 
-        case 4:        //Sair do jogo
+        case 4:              //Sair do jogo
             fim = true;
             limparTelaHibrido();
             //mensagemDeAdeus();      //Uma breve mensagem agradecendo o jogador/ os jogadores pelo tempo

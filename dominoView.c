@@ -7,7 +7,7 @@ Victor Barbosa Bulhoes      RA00207194
 #include "dominoView.h"
 #include "dominoModel.h"
 
-int mostrarMenuDomino()
+int mostrarMenuPrincipal()
 {
     bool Opvalido = true;
     int Op = 0;
@@ -105,11 +105,12 @@ void regrasJogo()
 
 }*/
 
-void menuJogada()
+int menuJogada(int acaoJogo)
 {
-
-	printf("1) Jogar Peca		2) Comprar Peca 	3) Salvar e Sair	4) Sair sem Salvar\n");
+	printf("1) Jogar Peca   2) Comprar Peca     3) Salvar   4) Menu Principal\n");
 	printf(">");
+	scanf("%d", &acaoJogo);
+	return acaoJogo;
 
 }
 
@@ -117,10 +118,10 @@ void mostrarPecas(tipo_Peca pecas[28])
 {
 	int i, j, k = 0, o = 0;
 
+	printf("Pecas do jogo: \n");
 	for(i = 0; i < 7; i++)
 	{
 		printf("\n");
-
 		for(j = k; j < 7; j++)
 		{
 			printf("\t|%d|%d|", pecas[o].num1, pecas[o].num2);

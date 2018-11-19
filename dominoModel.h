@@ -27,7 +27,10 @@ void jogoSingleplayerVirgem();                  // "main" do jogo singleplayer v
 void jogoSingleplayerCarregado();               // "main" do jogo carregado por arquivo singleplayer  (A ser implementada)
 void jogoMultiplayerVirgem();                   // "main" do jogo multiplayer
 void jogoMultiplayerCarregado();                // "main" do jogo carregado por arquivo multiplayer   (A ser implementada
-void limparTelaHibrido();                       //Limpa a tela para os sistemas operacionais Windows e Linux
+void limparTelaHibrido();                       // Limpa a tela para os sistemas operacionais Windows e Linux
+void pausaEstrategica();                        // Pausa o programa e espera o usuario apertar enter.
+
 ///FUNCOES TIPO INT
-int  comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);      // Decide qual jogador comeca primeiro de acordo com as regras de inicio de jogo.
+int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);      // Decide qual jogador comeca primeiro de acordo com as regras de inicio de jogo.
+int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int PrimeiroJogador);
 #endif
