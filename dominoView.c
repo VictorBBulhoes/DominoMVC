@@ -113,9 +113,20 @@ void mostrarPecas(tipo_Peca pecas[28])
 	}
 }
 
-void mostrarMesa()
+void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56])
 {
+    int i = 0;
+    int p = 0;
 
+    printf("MESA:\n");
+    for(i; i < 56; i++)
+    {
+        if (pecasMesa[i] != -1)
+        {
+            p = pecasMesa[i];
+            printf("\n|%d|%d|\n\n", pecas[p].num1, pecas[p].num2);
+        }
+    }
 }
 
 void mostrarPecasJogador()
