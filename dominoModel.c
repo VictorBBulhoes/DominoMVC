@@ -234,13 +234,6 @@ void zerarVetorPecas(int vetor[28])
 
 }
 
-void pausaEstrategica()
-{
-    printf("\n\nPressione ENTER para continuar...\n\n");
-    setbuf(stdin,NULL);
-    getchar();
-}
-
 void limparTelaHibrido()
 {
     #if defined(_WIN32)
