@@ -86,7 +86,7 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 }
 
 
-int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int posPecaJogador[1], int posPecaComp[1]){
+int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int *PposPecaJogador, int *PposPecaComp){
 
     int i, j, k = 1;
 	int maiorPecaJog1 = -1, maiorPecaComp = -1; // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
@@ -98,7 +98,7 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 			if(i == pecasJogador[j]){
 
 				maiorPecaJog1 = i;
-				posPecaJogador[0] = j;
+				*PposPecaJogador = j;
 				break;
 
 			}
@@ -118,7 +118,7 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 			if(i == pecasComp[j]){
 
 				maiorPecaComp = i;
-				posPecaComp[0] = j;
+				*PposPecaComp = j;
 				break;
 
 			}
@@ -154,7 +154,7 @@ void jogoSingleplayerVirgem()
     int PrimeiroJogador = 0;   // Variavel que determina qual eh o primeiro jogador
     int vencedor = 0;          // Variavel que determina qual eh o vencedor ( 1 para jogador1 e 2 para jogador2 ou Comp)
     int i = 0;                 // Variavel de controle para o loop For
-    int posPecaJogador[1], posPecaComp[1];      // Gambiarra! (Pega as posicoes das maiores pecas de cada jogador)
+    int posPecaJogador = -1, posPecaComp = -1;  // Pega as posicoes das maiores pecas de cada jogador
 
     // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
@@ -166,7 +166,8 @@ void jogoSingleplayerVirgem()
     pausaEstrategica();
     embaralharPecas(PID);
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
-    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra, pecasMesa, posPecaJogador, posPecaComp);
+    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra, pecasMesa, &posPecaJogador, &posPecaComp);
+
     //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
 
 

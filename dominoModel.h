@@ -32,6 +32,6 @@ void pausaEstrategica();                        // Pausa o programa e espera o u
 void zerarVetorPecas(int vetor[28]);            // Atribui -1 para todas as posicoes do vetor pecasMesa.
 
 //FUNCOES TIPO INT
-int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int posPecaJogador[1], int posPecaComp[1]);      // Decide qual jogador comeca primeiro de acordo com as regras de inicio de jogo.
+int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int *PposPecaJogador, int *PposPecaComp);      // Decide qual jogador comeca primeiro de acordo com as regras de inicio de jogo.
 int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasMesa[28], int pecasCompra[14], int PrimeiroJogador);
 #endif
