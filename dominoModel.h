@@ -28,7 +28,6 @@ void jogoSingleplayerCarregado();               // "main" do jogo carregado por 
 void jogoMultiplayerVirgem();                   // "main" do jogo multiplayer.
 void jogoMultiplayerCarregado();                // "main" do jogo carregado por arquivo multiplayer   (A ser implementada)
 void limparTelaHibrido();                       // Limpa a tela para os sistemas operacionais Windows e Linux.
-void pausaEstrategica();                        // Pausa o programa e espera o usuario apertar enter.
 void zerarVetorPecas(int vetor[28]);            // Atribui -1 para todas as posicoes do vetor pecasMesa.
 
 //FUNCOES TIPO INT
