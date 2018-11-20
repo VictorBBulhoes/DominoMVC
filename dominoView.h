@@ -9,6 +9,7 @@ void mostrarPecas(tipo_Peca pecas[28]);     // Mostra todas as pecas do jogo.
 void mensagemDeAdeus();                     // Imprime uma breve mensagem de agradecimento.
 void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56]);      // Imprime as pecas na mesa
 void mostrarPecasJogador();                 // Imprime as pecas na mao do jogador
+void pausaEstrategica();                        // Pausa o programa e espera o usuario apertar enter.
 
 //FUNCOES TIPO INT
 int mostrarMenuPrincipal();             // Imprime o menu principal.
