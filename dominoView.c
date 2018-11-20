@@ -133,3 +133,10 @@ void mostrarPecasJogador()
 {
 
 }
+
+void pausaEstrategica()
+{
+    printf("\n\nPressione ENTER para continuar...\n\n");
+    setbuf(stdin,NULL);
+    getchar();
+}
