@@ -86,10 +86,11 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 }
 
 
-int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int posPecaJogador[1], int posPecaComp[1]){
+int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56]){
 
     int i, j, k = 1;
-	int maiorPecaJog1 = -1, maiorPecaComp = -1; // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
+	int maiorPecaJog1 = -1, maiorPecaComp = -1;     // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
+	int posPecaJogador = -1 , posPecaComp  = -1;    // Pega as posicoes das maiores pecas de cada jogador
 
 	for(i = 27; i >= 0; i = i - k){
 
@@ -98,7 +99,7 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 			if(i == pecasJogador[j]){
 
 				maiorPecaJog1 = i;
-				posPecaJogador[0] = j;
+				posPecaJogador = j;
 				break;
 
 			}
@@ -118,7 +119,7 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 			if(i == pecasComp[j]){
 
 				maiorPecaComp = i;
-				posPecaComp[0] = j;
+				posPecaComp = j;
 				break;
 
 			}
@@ -133,11 +134,23 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 	}
 
 	if(maiorPecaJog1 > maiorPecaComp){
-        pecasMesa[13] = maiorPecaJog1;
+        pecasMesa[27] = maiorPecaJog1;
+        //pecasJogador[posPecaJogador] = -1;
+        for(int x = posPecaJogador; x < (7 - posPecaJogador); x++)
+        {
+            pecasJogador[x] = pecasJogador[x+1];
+        }
+        pecasJogador[6] = -1;
         return 1;
 	}
 	else if (maiorPecaJog1 < maiorPecaComp){
-        pecasMesa[13] = maiorPecaComp;
+        pecasMesa[27] = maiorPecaComp;
+        //pecasComp[posPecaComp] = -1;
+        for(int x = posPecaComp; x < (7 - posPecaComp); x++)
+        {
+            pecasComp[x] = pecasComp[x+1];
+        }
+        pecasComp[6] = -1;
         return 2;
 	}
 
@@ -150,25 +163,23 @@ void jogoSingleplayerVirgem()
     int pecasJogador[21];      // Criacao do vetor que armazena as pecas do jogador
     int pecasComp[21];         // Criacao do vetor que armazena as pecas do computador
     int pecasCompra[14];       // Criacao do vetor que armazena as pecas na mesa
-    int pecasMesa[28];         // Criacao do vetor que armazena as pecas jogadas em campo
+    int pecasMesa[56];         // Criacao do vetor que armazena as pecas jogadas em campo
     int PrimeiroJogador = 0;   // Variavel que determina qual eh o primeiro jogador
     int vencedor = 0;          // Variavel que determina qual eh o vencedor ( 1 para jogador1 e 2 para jogador2 ou Comp)
-    int i = 0;                 // Variavel de controle para o loop For
-    int posPecaJogador[1], posPecaComp[1];      // Gambiarra! (Pega as posicoes das maiores pecas de cada jogador)
 
     // Procedimentos para iniciar o jogo
-    gerarPecas(pecas);
     zerarVetorPecas(pecasMesa);
     zerarVetorPecas(pecasComp);
     zerarVetorPecas(pecasCompra);
     zerarVetorPecas(pecasJogador);
+    gerarPecas(pecas);
     mostrarPecas(pecas);
     pausaEstrategica();
     embaralharPecas(PID);
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
-    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra, pecasMesa, posPecaJogador, posPecaComp);
-    //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
+    PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra, pecasMesa);
 
+    //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
 
     // Jogo
     vencedor = JogoSingle(pecas, PID, pecasJogador, pecasComp, pecasCompra, pecasMesa, PrimeiroJogador);
@@ -180,7 +191,7 @@ void jogoSingleplayerVirgem()
 
 }*/
 
-int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[28], int PrimeiroJogador)
+int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int PrimeiroJogador)
 {
     int vencedor = 0, acaoJogo = 0;
     bool fimDoJogo = false;
@@ -188,12 +199,11 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
     while(!fimDoJogo){
        limparTelaHibrido();
        //Aqui ele precisa mostrar as pecas em jogo e as pecas do jogador
-       /*mostrarMesa();
+       mostrarMesa(pecas, pecasMesa);/*
        mostrarPecasJogador();*/
        acaoJogo =  menuJogada(acaoJogo);
         switch(acaoJogo){
             case 1:         // Jogar peca
-
                 break;
 
             case 2:         //  Comprar peca
@@ -217,18 +227,11 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 void zerarVetorPecas(int vetor[28])
 {
     int i = 0;
-    for(i = 0; i < 28; i++)
+    for(i = 0; i < 56; i++)
     {
         vetor[i] = -1;
     }
 
-}
-
-void pausaEstrategica()
-{
-    printf("\n\nPressione ENTER para continuar...\n\n");
-    setbuf(stdin,NULL);
-    getchar();
 }
 
 void limparTelaHibrido()
