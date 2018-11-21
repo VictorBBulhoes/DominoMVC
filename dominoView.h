@@ -8,8 +8,12 @@ void regrasJogo();                          // Imprime as regras do jogo.
 void mostrarPecas(tipo_Peca pecas[28]);     // Mostra todas as pecas do jogo.
 void mensagemDeAdeus();                     // Imprime uma breve mensagem de agradecimento.
 void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56]);      // Imprime as pecas na mesa
-void mostrarPecasJogador();                 // Imprime as pecas na mao do jogador
-void pausaEstrategica();                        // Pausa o programa e espera o usuario apertar enter.
+void mostrarPecasJogador(tipo_Peca pecas[28], int pecasJogador[21]);       // Imprime as pecas na mao do jogador
+void pausaEstrategica();                    // Pausa o programa e espera o usuario apertar enter.
+void escolhaPeca();                         // Jogador escolhe uma peca que esta em sua mao.
+void mensagemDePrimeiro(int comeco);        // Imprime uma mensagem dizendo quem comecou o jogo.
+void mensagemFinalJogo(int vencedor);       // Imprime uma mensagem de fim de jogo.
+void modoIndisponivel();                    // Imprime uma mensagem que o modo está indisponivel no momento.
 
 //FUNCOES TIPO INT
 int mostrarMenuPrincipal();             // Imprime o menu principal.
