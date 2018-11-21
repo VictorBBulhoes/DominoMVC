@@ -153,7 +153,7 @@ void pausaEstrategica()
     getchar();
 }
 
-void escolhaPeca()
+int escolhaPeca()
 {
     int escolha = 0;
     printf("\nQual peca voce deseja jogar?\n>>");
@@ -191,6 +191,8 @@ void mensagemFinalJogo(int vencedor){
 }
 
 void modoIndisponivel(){
-		
+
 	printf("\n\n\tMODO DE JOGO INDISPONÍVEL");
+	pausaEstrategica();
+	limparTelaHibrido();
 }
