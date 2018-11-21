@@ -10,7 +10,7 @@
 #include <locale.h>
 
 
-/// DECLARACAO DO STRUCT PARA ARMAZENAR AS PECAS DO JOGO
+// DECLARACAO DO STRUCT PARA ARMAZENAR AS PECAS DO JOGO
 typedef struct Peca{
 
 	int num1;	// Numero de um lado da peca
@@ -29,8 +29,11 @@ void jogoMultiplayerVirgem();                   // "main" do jogo multiplayer.
 void jogoMultiplayerCarregado();                // "main" do jogo carregado por arquivo multiplayer   (A ser implementada)
 void limparTelaHibrido();                       // Limpa a tela para os sistemas operacionais Windows e Linux.
 void zerarVetorPecas(int vetor[28]);            // Atribui -1 para todas as posicoes do vetor pecasMesa.
+void comprarPeca(int pecasJogador[21], int pecasCompra[14]);    // Jogador compra pecas ate nao poder comprar mais.
+void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int *PmesaEsquerda, int *PmesaDireita, int *Pescolha);
 
 //FUNCOES TIPO INT
 int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56]);      // Decide qual jogador comeca primeiro de acordo com as regras de inicio de jogo.
 int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasMesa[56], int pecasCompra[14], int PrimeiroJogador);
+int ladoDaMesa(int pecasMesa[56], int pecasJogador[21], int *PmesaDireita, int *PmesaEsquerda);
 #endif
