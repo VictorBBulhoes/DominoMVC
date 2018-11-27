@@ -289,6 +289,7 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
 				pecasJogador[i] = pecasJogador[i + 1];
 				pecasJogador[**PqtdPecasJogador] = -1;
 			}
+			**PqtdPecasJogador = **PqtdPecasJogador - 1;
 		}
 
 		if(jogadaPossivel == false){
@@ -319,14 +320,6 @@ void comprarPeca(int pecasJogador[21], int pecasCompra[14], int **PqtdPecasJogad
 {
     int x = 0, qtdPecasCompra = 0, aux  = 0;
 
-    /*for( x = 0; x < 21; x++)
-    {
-        if (pecasJogador[x] != -1)
-        {
-            **PqtdPecasJogador = **PqtdPecasJogador + 1;
-        }
-    }
-*/
     for(x = 0; x < 14; x++)
     {
         if (pecasCompra[x] != -1)
