@@ -188,6 +188,7 @@ void jogoSingleplayerVirgem()
     zerarVetorPecas(pecasComp);
     zerarVetorPecas(pecasCompra);
     zerarVetorPecas(pecasJogador);
+    zerarVetorPecas(posicaoPecasMesa);
     gerarPecas(pecas);
     mostrarPecas(pecas);
     pausaEstrategica();
@@ -244,11 +245,10 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
 {
 	int escolha;
     int lado = -1;
-    int aux;
+    int aux = -1, aux2 = -1;
     int i;
     bool jogadaPossivel = false;
     do{
-
         escolha = escolhaPeca();
         if(escolha == 0){
         	break;
@@ -258,14 +258,18 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
     	if(lado == 0){ // Se a jogada ocorrer na esquerda
     		aux = pecasJogador[escolha - 1]; // Auxiliar assume o ID da peça jogada
     		if(pecas[aux].num1 == **PvalorEsquerda){
-    			posicaoPecasMesa[*PmesaEsquerda] = 1;
-    			pecasMesa[*PmesaEsquerda] = aux;
-    			*PmesaEsquerda--;
-    			jogadaPossivel = true;
-			}else if(pecas[aux].num2 == **PvalorEsquerda){
     			posicaoPecasMesa[*PmesaEsquerda] = 2;
     			pecasMesa[*PmesaEsquerda] = aux;
-    			*PmesaEsquerda--;
+    			*PmesaEsquerda = *PmesaEsquerda - 1;
+                aux2 = pecas[aux].num1;
+    			**PvalorEsquerda = aux2;
+    			jogadaPossivel = true;
+			}else if(pecas[aux].num2 == **PvalorEsquerda){
+    			posicaoPecasMesa[*PmesaEsquerda] = 1;
+    			pecasMesa[*PmesaEsquerda] = aux;
+    			*PmesaEsquerda = *PmesaEsquerda - 1;
+    			aux2 = pecas[aux].num1;
+    			**PvalorEsquerda = aux2;
     			jogadaPossivel = true;
 			}
 		}
@@ -274,12 +278,16 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
     		if(pecas[aux].num1 == **PvalorDireita){
     			posicaoPecasMesa[*PmesaDireita] = 1; // O valor da esquerda eh o num1
     			pecasMesa[*PmesaDireita] = aux;
-    			*PmesaDireita++;
+    			*PmesaDireita = *PmesaDireita + 1;
+    			aux2 = pecas[aux].num2;
+    			**PvalorDireita = aux2;
     			jogadaPossivel = true;
 			}else if(pecas[aux].num2 == **PvalorDireita){
     			posicaoPecasMesa[*PmesaDireita] = 2; // O valor da esquerda eh o num2
     			pecasMesa[*PmesaDireita] = aux;
-    			*PmesaDireita++;
+    			*PmesaDireita = *PmesaDireita + 1;
+    			aux2 = pecas[aux].num2;
+    			**PvalorDireita = aux2;
     			jogadaPossivel = true;
 			}
 		}
@@ -290,6 +298,7 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
 				pecasJogador[**PqtdPecasJogador] = -1;
 			}
 			**PqtdPecasJogador = **PqtdPecasJogador - 1;
+
 		}
 
 		if(jogadaPossivel == false){
