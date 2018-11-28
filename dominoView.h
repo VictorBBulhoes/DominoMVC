@@ -15,6 +15,7 @@ void mensagemFinalJogo(int vencedor);       // Imprime uma mensagem de fim de jo
 void modoIndisponivel();                    // Imprime uma mensagem que o modo está indisponivel no momento.
 void jogadaImpossivel();					// Imprime uma mensagem avisando que a jogada feita é impossível
 void perguntarLado();						// Imprime uma mensagem que pergunta de que lado o jogador deseja jogar sua peça
+void passarVez();
 
 //FUNCOES TIPO INT
 int mostrarMenuPrincipal();             // Imprime o menu principal.

@@ -188,6 +188,7 @@ void jogoSingleplayerVirgem()
     zerarVetorPecas(pecasComp);
     zerarVetorPecas(pecasCompra);
     zerarVetorPecas(pecasJogador);
+    zerarVetorPecas(posicaoPecasMesa);
     gerarPecas(pecas);
     mostrarPecas(pecas);
     pausaEstrategica();
@@ -205,37 +206,70 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 {
     int vencedor = 0, acaoJogo = 0, mesaDireita = 28, mesaEsquerda = 26, escolha = 0;
     bool fimDoJogo = false;
+    bool fimDaJogadaJog = false;
+    bool fimDaJogadaComp = false;
     posicaoPecasMesa[27] = 1;
+    int passouVezJog = 0;   // Determina se o jogador passou a vez
+    int passouVezComp = 0;  // Determina se o computador passou a vez
+    int passouVez = 0;      // Determina se os dois passaram a vez (se os dois passarem a vez, o jogo acaba e quem tiver menos peças ganha)
 
     while(!fimDoJogo){
-       limparTelaHibrido();
-       mostrarMesa(pecas, pecasMesa, posicaoPecasMesa);
-       mostrarPecasJogador(pecas, pecasJogador);
-       acaoJogo =  menuJogada(acaoJogo);
-       switch(acaoJogo){
-            case 1:         // Jogar peca
-            	// Retirei escolhaPeca() e coloquei dentro de jogarPeca, porque precisa estar dentro de um loop
-                jogarPeca(pecas, pecasJogador, pecasMesa, &mesaEsquerda, &mesaDireita, &PvalorEsquerda, &PvalorDireita, posicaoPecasMesa, &PqtdPecasJogador);
-                //Logo em seguida deve vir a jogada do computador
-                break;
+        fimDaJogadaJog = false;
+        fimDaJogadaComp = false;
+        while(!fimDaJogadaJog){
+            passouVezJog = 0;
+            fimDaJogadaJog = false;
+            limparTelaHibrido();
+            mostrarMesa(pecas, pecasMesa, posicaoPecasMesa);
+            mostrarPecasJogador(pecas, pecasJogador);
+            acaoJogo =  menuJogada(acaoJogo);
+            switch(acaoJogo){
+                case 1:         // Jogar peca
+                    // Retirei escolhaPeca() e coloquei dentro de jogarPeca, porque precisa estar dentro de um loop
+                    jogarPeca(pecas, pecasJogador, pecasMesa, &mesaEsquerda, &mesaDireita, &PvalorEsquerda, &PvalorDireita, posicaoPecasMesa, &PqtdPecasJogador);
+                    setbuf(stdin, NULL);
+                    fimDaJogadaJog = true;
+                    //Logo em seguida deve vir a jogada do computador
+                    break;
 
-            case 2:         //  Comprar peca
-                comprarPeca(pecasJogador, pecasCompra, &PqtdPecasJogador);
-                //Mostrar aviso quando o jogador nao puder comprar mais, por ter pecas que podem ser jogadas
-                break;
+                case 2:         //  Comprar peca
+                    comprarPeca(pecasJogador, pecasCompra, &PqtdPecasJogador);
+                    //Mostrar aviso quando o jogador nao puder comprar mais, por ter pecas que podem ser jogadas
+                    break;
 
-            case 3:         // Salvar (Arquivo)
-                break;
+                case 3:         // Salvar (Arquivo)
+                    break;
 
-            case 4:         // Menu principal
-                desembaralharPecas(PID);
-                fimDoJogo = true;
-                break;
+                case 4:         // Menu principal
+                    desembaralharPecas(PID);
+                    fimDaJogadaJog = true;
+                    fimDoJogo = true;
+                    break;
+
+                case 5:
+                    passarVez();
+                    passouVezJog = 1;
+                    pausaEstrategica();
+                    fimDaJogadaJog = true;
+            }
+
 
         }
 
+        while(!fimDaJogadaComp){
 
+
+
+            fimDaJogadaComp = true;
+        }
+
+        passouVez = passouVezComp + passouVezJog;
+
+        if(passouVez = 2){
+
+        }
     }
+
     return vencedor;
 
 }
@@ -244,28 +278,36 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
 {
 	int escolha;
     int lado = -1;
-    int aux;
+    int aux = -1, aux2 = -1;
     int i;
     bool jogadaPossivel = false;
     do{
-
         escolha = escolhaPeca();
         if(escolha == 0){
         	break;
 		}
     	lado = ladoDaMesa(); // Determina o lado em que o jogador vai jogar a peça
 
+    	setbuf(stdin, NULL);
+
     	if(lado == 0){ // Se a jogada ocorrer na esquerda
     		aux = pecasJogador[escolha - 1]; // Auxiliar assume o ID da peça jogada
     		if(pecas[aux].num1 == **PvalorEsquerda){
-    			posicaoPecasMesa[*PmesaEsquerda] = 1;
-    			pecasMesa[*PmesaEsquerda] = aux;
-    			*PmesaEsquerda--;
-    			jogadaPossivel = true;
-			}else if(pecas[aux].num2 == **PvalorEsquerda){
     			posicaoPecasMesa[*PmesaEsquerda] = 2;
     			pecasMesa[*PmesaEsquerda] = aux;
-    			*PmesaEsquerda--;
+    			setbuf(stdin, NULL);
+    			*PmesaEsquerda = *PmesaEsquerda - 1;
+                aux2 = pecas[aux].num2;
+                setbuf(stdin, NULL);
+    			**PvalorEsquerda = aux2;
+    			jogadaPossivel = true;
+			}else if(pecas[aux].num2 == **PvalorEsquerda){
+    			posicaoPecasMesa[*PmesaEsquerda] = 1;
+    			pecasMesa[*PmesaEsquerda] = aux;
+    			setbuf(stdin, NULL);
+    			*PmesaEsquerda = *PmesaEsquerda - 1;
+                aux2 = pecas[aux].num1;
+                **PvalorEsquerda = aux2;
     			jogadaPossivel = true;
 			}
 		}
@@ -274,12 +316,20 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
     		if(pecas[aux].num1 == **PvalorDireita){
     			posicaoPecasMesa[*PmesaDireita] = 1; // O valor da esquerda eh o num1
     			pecasMesa[*PmesaDireita] = aux;
-    			*PmesaDireita++;
+    			setbuf(stdin, NULL);
+    			*PmesaDireita = *PmesaDireita + 1;
+    			aux2 = pecas[aux].num2;
+    			setbuf(stdin, NULL);
+    			**PvalorDireita = aux2;
     			jogadaPossivel = true;
 			}else if(pecas[aux].num2 == **PvalorDireita){
     			posicaoPecasMesa[*PmesaDireita] = 2; // O valor da esquerda eh o num2
     			pecasMesa[*PmesaDireita] = aux;
-    			*PmesaDireita++;
+    			setbuf(stdin, NULL);
+    			*PmesaDireita = *PmesaDireita + 1;
+    			aux2 = pecas[aux].num1;
+    			setbuf(stdin, NULL);
+    			**PvalorDireita = aux2;
     			jogadaPossivel = true;
 			}
 		}
@@ -288,8 +338,10 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
 			for(i = escolha - 1; i < **PqtdPecasJogador; i++){
 				pecasJogador[i] = pecasJogador[i + 1];
 				pecasJogador[**PqtdPecasJogador] = -1;
+				setbuf(stdin, NULL);
 			}
 			**PqtdPecasJogador = **PqtdPecasJogador - 1;
+
 		}
 
 		if(jogadaPossivel == false){
@@ -311,6 +363,7 @@ int ladoDaMesa()
 		if((ladoEscolhido == 0) || (ladoEscolhido == 1)){
 			possivel = true;
 		}
+		setbuf(stdin, NULL);
 	}while(!possivel);
 
 	return ladoEscolhido;
