@@ -16,6 +16,10 @@ void modoIndisponivel();                    // Imprime uma mensagem que o modo e
 void jogadaImpossivel();					// Imprime uma mensagem avisando que a jogada feita é impossível
 void perguntarLado();						// Imprime uma mensagem que pergunta de que lado o jogador deseja jogar sua peça
 void passarVez();
+void compPassou();                          // Imprime uma mensagem dizendo que o computador passou sua vez
+void compComprou();                         // Imprime uma mensagem dizendo que o computador comprou uma peça
+void compJogou();                           // Imprime uma mensagem dizendo que o computador jogou uma peça
+void fimdeJogo(int quantidade);
 
 //FUNCOES TIPO INT
 int mostrarMenuPrincipal();             // Imprime o menu principal.

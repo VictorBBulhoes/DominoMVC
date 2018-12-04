@@ -217,3 +217,31 @@ void perguntarLado()
 	printf("\n\nJogar a peça em que lado? (esquerda = 0; direita = 1)");
 	printf("\n>> ");
 }
+
+void compPassou()
+{
+    printf("\n\nO computador passou a vez.\n");
+}
+
+void compComprou()
+{
+    printf("\nO computador comprou uma peça");
+}
+
+void compJogou()
+{
+    printf("\n\nO computador jogou uma peça\n");
+}
+
+void fimdeJogo(int quantidade){
+  		  if(quantidade == 1){
+      			  printf("\nO jogador venceu!\n\n");
+   		 }
+    		else if(quantidade == 2){
+        		  printf("\nO computador venceu!\n\n");
+    		}
+    		else if(quantidade == 0){
+        		  printf("\nEmpate!\n\n");
+    		}
+	}
+
