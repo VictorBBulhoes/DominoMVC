@@ -167,19 +167,36 @@ int escolhaPeca()
     return escolha;
 }
 
-void mensagemDePrimeiro(int comeco){
+void mensagemDePrimeiro(int comeco, int ***Pmodo){
 
 	switch(comeco){
 		case 1:
-			printf("\nVocê jogou a primeira peça!\n\n");
-			pausaEstrategica();
-			limparTelaHibrido();
-			break;
+		    if(***Pmodo == 1){
+                printf("\nVocê jogou a primeira peça!\n\n");
+                pausaEstrategica();
+                limparTelaHibrido();
+                break;
+		    }
+		    else if(***Pmodo == 2){
+                printf("\nJogador 1 jogou a primeira peça!\n\n");
+                pausaEstrategica();
+                limparTelaHibrido();
+                break;
+
+		    }
 		case 2:
-			printf("\nComputador jogou a primeira peça\n\n");
-			pausaEstrategica();
-			limparTelaHibrido();
-			break;
+		    if (***Pmodo == 1){
+                printf("\nComputador jogou a primeira peça\n\n");
+                pausaEstrategica();
+                limparTelaHibrido();
+                break;
+		    }
+		    else if (***Pmodo == 2){
+                printf("\nJogador 2 jogou a primeira peca\n\n");
+                pausaEstrategica();
+                limparTelaHibrido();
+                break;
+		    }
 	}
 }
 
