@@ -29,7 +29,7 @@ void gerarPecas(tipo_Peca pecas[28])
 	}
 }
 
-void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peÃ§as. Usado sempre que peÃ§as serÃ£o mostradas na tela
+void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado sempre que peças serão mostradas na tela
 {
 	int i;
 	int aux;
@@ -56,11 +56,11 @@ void distribuirPecas(int PID[28], int pecasJogador[21], int pecasComp[21], int p
 	int i;
 	int k = 0;
 
-	for(i = 0; i < 7 ; i++){              //distribui as 7 primeiras peï¿½as para o jogador
+	for(i = 0; i < 7 ; i++){              //distribui as 7 primeiras pe�as para o jogador
 		pecasJogador[i] = PID[i];
 	}
 
-	for(i = 7; i < 14 ; i++){             //distribui as 7 seguintes peï¿½as para o computador
+	for(i = 7; i < 14 ; i++){             //distribui as 7 seguintes pe�as para o computador
 
 		pecasComp[k] = PID[i];
 		k++;
@@ -75,7 +75,7 @@ void distribuirPecas(int PID[28], int pecasJogador[21], int pecasComp[21], int p
 
 }
 
-void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peÃ§as
+void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 {
 	int i;
 
@@ -88,7 +88,7 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peÃ§as
 int comecarPrimeiro(tipo_Peca pecas[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int *PvalorEsquerda, int *PvalorDireita, int *PqtdPecasJogador, int *PqtdPecasComp){
 
     int i, j, k = 1;
-	int maiorPecaJog1 = -1, maiorPecaComp = -1;     // para decidir quem Ã© o primeiro a jogar, comparar e ver qual Ã© maior
+	int maiorPecaJog1 = -1, maiorPecaComp = -1;     // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
 	int posPecaJogador = -1 , posPecaComp  = -1;    // Pega as posicoes das maiores pecas de cada jogador.
 	int comeco = 0;                                 // Imprime uma mensagem sobre quem comeca primeiro.
 	int x;
@@ -205,20 +205,25 @@ void jogoSingleplayerVirgem()
 int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int PrimeiroJogador, int posicaoPecasMesa[56], int *PvalorEsquerda, int *PvalorDireita, int *PqtdPecasJogador,int *PqtdPecasComp)
 {
     int vencedor = 0, acaoJogo = 0, mesaDireita = 28, mesaEsquerda = 26, escolha = 0;
+    int i, j, k;
+    int aux;
+    int auxEndereco;
     bool fimDoJogo = false;
     bool fimDaJogadaJog = false;
     bool fimDaJogadaComp = false;
+    int auxJogadaComp;
     posicaoPecasMesa[27] = 1;
     int passouVezJog = 0;   // Determina se o jogador passou a vez
     int passouVezComp = 0;  // Determina se o computador passou a vez
-    int passouVez = 0;      // Determina se os dois passaram a vez (se os dois passarem a vez, o jogo acaba e quem tiver menos peças ganha)
+    int passouVez = 0;      // Determina se os dois passaram a vez (se os dois passarem a vez, o jogo acaba e quem tiver menos pe�as ganha)
+    int qtdPecasCompra = 0;
+    int ganhou;
 
     while(!fimDoJogo){
         fimDaJogadaJog = false;
         fimDaJogadaComp = false;
         while(!fimDaJogadaJog){
             passouVezJog = 0;
-            fimDaJogadaJog = false;
             limparTelaHibrido();
             mostrarMesa(pecas, pecasMesa, posicaoPecasMesa);
             mostrarPecasJogador(pecas, pecasJogador);
@@ -256,17 +261,92 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 
         }
 
+        fimDaJogadaJog = false;
+
         while(!fimDaJogadaComp){
+            passouVezComp = 0;
+            qtdPecasCompra = 0;             //Contar a quantidade de pe�as dispon�vel para compra
+            for(k = 0; k < 14; k++){
+                if(pecasCompra[k] != -1){
+                    qtdPecasCompra++;
+                }
+            }
+            for(i = 0; i < *PqtdPecasComp; i++){    // Jogada da pe�a do Computador (tentativa na esquerda)
+                auxJogadaComp = pecasComp[i];
+                if(pecas[auxJogadaComp].num1 == *PvalorEsquerda){       // Se o num1 da pe�a atual for igual ao valor da esquerda
+                    auxEndereco = mesaEsquerda;
+                    posicaoPecasMesa[auxEndereco] = 2;
+                    pecasMesa[auxEndereco] = auxJogadaComp;
+                    mesaEsquerda = mesaEsquerda - 1;
+                    aux = pecas[auxJogadaComp].num2;
+                    *PvalorEsquerda = aux;
+                    fimDaJogadaComp = true;
+                    break;
+                }else if(pecas[auxJogadaComp].num2 == *PvalorEsquerda){ // Se o num2 da pe�a atual for igual ao valor da esquerda
+                    auxEndereco = mesaEsquerda;
+                    posicaoPecasMesa[auxEndereco] = 1;
+                    pecasMesa[auxEndereco] = auxJogadaComp;
+                    mesaEsquerda = mesaEsquerda - 1;
+                    aux = pecas[auxJogadaComp].num1;
+                    *PvalorEsquerda = aux;
+                    fimDaJogadaComp = true;
+                    break;
+                }else if(pecas[auxJogadaComp].num1 == *PvalorDireita){ // Se o num1 da pe�a atual for igual ao valor da direita
+                    auxEndereco = mesaDireita;
+                    posicaoPecasMesa[auxEndereco] = 1;
+                    pecasMesa[auxEndereco] = auxJogadaComp;
+                    mesaDireita = mesaDireita + 1;
+                    aux = pecas[auxJogadaComp].num2;
+                    *PvalorDireita = aux;
+                    fimDaJogadaComp = true;
+                    break;
+                }else if(pecas[auxJogadaComp].num2 == *PvalorDireita){ // Se o num2 da pe�a atual for igual ao valor da direita
+                    auxEndereco = mesaDireita;
+                    posicaoPecasMesa[auxEndereco] = 2;
+                    pecasMesa[auxEndereco] = auxJogadaComp;
+                    mesaDireita = mesaDireita + 1;
+                    aux = pecas[auxJogadaComp].num1;
+                    *PvalorDireita = aux;
+                    fimDaJogadaComp = true;
+                    break;
+                }
 
 
+            }
 
-            fimDaJogadaComp = true;
+            if(fimDaJogadaComp == true){
+                    for(j = i; j < *PqtdPecasComp; j++){
+                        pecasComp[j] = pecasComp[j + 1];
+                        pecasComp[*PqtdPecasComp] = -1;
+                    }
+                    *PqtdPecasComp = *PqtdPecasComp - 1;
+                    compJogou();
+                    pausaEstrategica();
+                }
+
+            if(fimDaJogadaComp == false){
+                if(qtdPecasCompra != 0){
+                    comprarPeca(pecasComp, pecasCompra, &PqtdPecasComp);
+                    compComprou();
+                    pausaEstrategica();
+                } else{
+                    passouVezComp = 1;
+                    fimDaJogadaComp = true;
+                    compPassou();
+                    pausaEstrategica();
+                }
+            }
+
         }
+
+        fimDaJogadaComp = false;
 
         passouVez = passouVezComp + passouVezJog;
 
-        if(passouVez = 2){
-
+        if(passouVez == 2){     // Acaba o jogo
+            fimDoJogo = true;
+            ganhou = comparadorPecas(&PqtdPecasJogador, &PqtdPecasComp);
+            fimdeJogo(ganhou);
         }
     }
 
@@ -286,43 +366,49 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
         if(escolha == 0){
         	break;
 		}
-    	lado = ladoDaMesa(); // Determina o lado em que o jogador vai jogar a peça
+    	lado = ladoDaMesa(); // Determina o lado em que o jogador vai jogar a pe�a
 
     	setbuf(stdin, NULL);
 
     	if(lado == 0){ // Se a jogada ocorrer na esquerda
-    		aux = pecasJogador[escolha - 1]; // Auxiliar assume o ID da peça jogada
+    		aux = pecasJogador[escolha - 1]; // Auxiliar assume o ID da pe�a jogada
     		if(pecas[aux].num1 == **PvalorEsquerda){
     			posicaoPecasMesa[*PmesaEsquerda] = 2;
     			pecasMesa[*PmesaEsquerda] = aux;
+    			setbuf(stdin, NULL);
     			*PmesaEsquerda = *PmesaEsquerda - 1;
-          aux2 = pecas[aux].num1;
+                aux2 = pecas[aux].num2;
+                setbuf(stdin, NULL);
     			**PvalorEsquerda = aux2;
     			jogadaPossivel = true;
 			}else if(pecas[aux].num2 == **PvalorEsquerda){
     			posicaoPecasMesa[*PmesaEsquerda] = 1;
     			pecasMesa[*PmesaEsquerda] = aux;
+    			setbuf(stdin, NULL);
     			*PmesaEsquerda = *PmesaEsquerda - 1;
-    			aux2 = pecas[aux].num1;
-    			**PvalorEsquerda = aux2;
+                aux2 = pecas[aux].num1;
+                **PvalorEsquerda = aux2;
     			jogadaPossivel = true;
 			}
 		}
 		if(lado == 1){ // Se a jogada ocorrer na direita
-    		aux = pecasJogador[escolha - 1]; // Auxiliar assume o ID da peça jogada
+    		aux = pecasJogador[escolha - 1]; // Auxiliar assume o ID da pe�a jogada
     		if(pecas[aux].num1 == **PvalorDireita){
     			posicaoPecasMesa[*PmesaDireita] = 1; // O valor da esquerda eh o num1
     			pecasMesa[*PmesaDireita] = aux;
+    			setbuf(stdin, NULL);
     			*PmesaDireita = *PmesaDireita + 1;
     			aux2 = pecas[aux].num2;
+    			setbuf(stdin, NULL);
     			**PvalorDireita = aux2;
     			jogadaPossivel = true;
-          
 			}else if(pecas[aux].num2 == **PvalorDireita){
     			posicaoPecasMesa[*PmesaDireita] = 2; // O valor da esquerda eh o num2
     			pecasMesa[*PmesaDireita] = aux;
+    			setbuf(stdin, NULL);
     			*PmesaDireita = *PmesaDireita + 1;
-    			aux2 = pecas[aux].num2;
+    			aux2 = pecas[aux].num1;
+    			setbuf(stdin, NULL);
     			**PvalorDireita = aux2;
     			jogadaPossivel = true;
 			}
@@ -399,4 +485,16 @@ void limparTelaHibrido()
     #elif defined(__linux__)
         system("clear");
     #endif
+}
+
+int comparadorPecas(int pecasJogador, int pecasComp){
+    if(pecasJogador > pecasComp){
+        return 1;
+    }
+    else if(pecasJogador < pecasComp){
+        return 2;
+    }
+    else if(pecasJogador == pecasComp){
+        return 0;
+    }
 }
