@@ -261,19 +261,21 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 
         }
 
-        qtdPecasCompra = 0;             //Contar a quantidade de peças disponível para compra
-        for(k = 0; k < 14; k++){
-            if(pecasCompra[k] != -1){
-                qtdPecasCompra++;
-            }
-        }
+
 
         fimDaJogadaJog = false;
 
         while(!fimDaJogadaComp){
             passouVezComp = 0;
 
+            qtdPecasCompra = 0;             //Contar a quantidade de peças disponível para compra
+            for(k = 0; k < 14; k++){
+                if(pecasCompra[k] != -1){
+                    qtdPecasCompra++;
+                }
+            }
 
+0
             for(i = 0; i < *PqtdPecasComp; i++){    // Jogada da peça do Computador (tentativa na esquerda)
                 auxJogadaComp = pecasComp[i];
                 if(pecas[auxJogadaComp].num1 == *PvalorEsquerda){       // Se o num1 da peça atual for igual ao valor da esquerda
@@ -314,7 +316,10 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
                     break;
                 }
 
-                if(fimDaJogadaComp == true){
+
+            }
+
+            if(fimDaJogadaComp == true){
                     for(j = i; j < *PqtdPecasComp; j++){
                         pecasComp[j] = pecasComp[j + 1];
                         pecasComp[*PqtdPecasComp] = -1;
@@ -323,7 +328,6 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
                     compJogou();
                     pausaEstrategica();
                 }
-            }
 
             if(fimDaJogadaComp == false){
                 if(qtdPecasCompra != 0){
@@ -351,7 +355,6 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
             fimDoJogo = true;
             ganhou = comparadorPecas(&PqtdPecasJogador, &PqtdPecasComp);
             fimdeJogo(ganhou);
-            pausaEstrategica();
             // QUEM TIVER MAIS PEÇAS PERDE
         }
     }
