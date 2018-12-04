@@ -233,15 +233,36 @@ void compJogou()
     printf("\n\nO computador jogou uma peça\n");
 }
 
-void fimdeJogo(int quantidade){
-  		  if(quantidade == 1){
-      			  printf("\nO jogador venceu!\n\n");
-   		 }
-    		else if(quantidade == 2){
-        		  printf("\nO computador venceu!\n\n");
-    		}
-    		else if(quantidade == 0){
-        		  printf("\nEmpate!\n\n");
-    		}
-	}
+void fimdeJogo(int quantidade)
+{
+	  if(quantidade == 1){
+		  printf("\nO jogador venceu!\n\n");
+	 }else if(quantidade == 2){
+          printf("\nO computador venceu!\n\n");
+     }else if(quantidade == 0){
+          printf("\nEmpate!\n\n");
+     }
+}
+
+
+void fimdeJogoMulti(int quantidade)
+{
+    if(quantidade == 1){
+        printf("\nO Jogador1 ganhou!");
+    }else if(quantidade == 2){
+        printf("\nO Jogador2 ganhou!");
+    }else if(quantidade == 0){
+        printf("\nO jogo empatou!");}
+}
+
+
+void vezDoProximo()
+{
+    printf("\nVEZ DO PRÓXIMO JOGADOR\n");
+}
+
+void avisoMultiplayer()
+{
+    printf("\n\nTodas as vezes que o jogo disser computador, ele está se referenciando ao Jogador2.");
+}
 

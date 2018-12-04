@@ -20,6 +20,9 @@ void compPassou();                          // Imprime uma mensagem dizendo que 
 void compComprou();                         // Imprime uma mensagem dizendo que o computador comprou uma peça
 void compJogou();                           // Imprime uma mensagem dizendo que o computador jogou uma peça
 void fimdeJogo(int quantidade);
+void vezDoProximo();
+void fimdeJogoMulti(int quantidade);
+void avisoMultiplayer();
 
 //FUNCOES TIPO INT
 int mostrarMenuPrincipal();             // Imprime o menu principal.
