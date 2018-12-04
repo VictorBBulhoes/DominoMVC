@@ -88,7 +88,7 @@ void regrasJogo()
 
 int menuJogada(int acaoJogo)
 {
-	printf("1) Jogar Peça   2) Comprar Peça   3) Salvar   4) Menu Principal\n");
+	printf("1) Jogar Peça   2) Comprar Peça   3) Salvar   4) Menu Principal   5) Passar a vez\n");
 	printf(">> ");
 	scanf("%d", &acaoJogo);
 	return acaoJogo;
@@ -126,7 +126,7 @@ void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56], int posicaoPecasMesa[56
         	if(posicaoPecasMesa[i] == 1){
             	p = pecasMesa[i];
             	printf(" |%d|%d|", pecas[p].num1, pecas[p].num2);
-            	
+
         	}else if(posicaoPecasMesa[i] == 2){
         		p = pecasMesa[i];
             	printf(" |%d|%d|", pecas[p].num2, pecas[p].num1);
@@ -205,6 +205,11 @@ void modoIndisponivel(){
 
 void jogadaImpossivel(){
 	printf("\n\nJOGADA IMPOSSÍVEL\n");
+}
+
+void passarVez()
+{
+    printf("\n\nPASSOU A VEZ\n");
 }
 
 void perguntarLado()
