@@ -275,7 +275,7 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
                 }
             }
 
-0
+
             for(i = 0; i < *PqtdPecasComp; i++){    // Jogada da peça do Computador (tentativa na esquerda)
                 auxJogadaComp = pecasComp[i];
                 if(pecas[auxJogadaComp].num1 == *PvalorEsquerda){       // Se o num1 da peça atual for igual ao valor da esquerda
@@ -496,14 +496,174 @@ void limparTelaHibrido()
     #endif
 }
 
-int comparadorPecas(int pecasJogador, int pecasComp){
+int comparadorPecas(int **pecasJogador, int **pecasComp)
+{
     if(pecasJogador > pecasComp){
-        return 1;
+        return 2;
     }
     else if(pecasJogador < pecasComp){
-        return 2;
+        return 1;
     }
     else if(pecasJogador == pecasComp){
         return 0;
     }
+}
+
+void jogoMultiplayerVirgem()
+{
+    tipo_Peca pecas[28];       // Criacao do struct dentro do jogo
+    int PID[28];               // Criacao do ID de cada peca
+    int pecasJogador[21];      // Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[21];         // Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];       // Criacao do vetor que armazena as pecas na mesa
+    int pecasMesa[56];         // Criacao do vetor que armazena as pecas jogadas em campo
+    int posicaoPecasMesa[56];   // Criacao do vetor que determina qual numero da peca esta do lado esquerdo (1 para num1 na esquerda, e 2 para num2 na esquerda)
+    int PrimeiroJogador = 0;   // Variavel que determina qual eh o primeiro jogador
+    int vencedor = 0;          // Variavel que determina qual eh o vencedor ( 1 para jogador1 e 2 para jogador2 ou Comp)
+    int valorEsquerda = -999, valorDireita = -999;
+    int qtdPecasJogador = 7;
+    int qtdPecasComp = 7;
+
+    // Procedimentos para iniciar o jogo
+    zerarVetorPecas(pecasMesa);
+    zerarVetorPecas(pecasComp);
+    zerarVetorPecas(pecasCompra);
+    zerarVetorPecas(pecasJogador);
+    zerarVetorPecas(posicaoPecasMesa);
+    gerarPecas(pecas);
+    mostrarPecas(pecas);
+    pausaEstrategica();
+    embaralharPecas(PID);
+    distribuirPecas(PID, pecasJogador, pecasComp, pecasCompra);
+    PrimeiroJogador = comecarPrimeiro(pecas, pecasJogador, pecasComp, pecasCompra, pecasMesa, &valorEsquerda, &valorDireita, &qtdPecasJogador, &qtdPecasComp);
+
+    // Jogo
+    vencedor = jogoMulti(pecas, PID, pecasJogador, pecasComp, pecasCompra, pecasMesa, PrimeiroJogador, posicaoPecasMesa, &valorEsquerda, &valorDireita, &qtdPecasJogador, &qtdPecasComp);
+    pausaEstrategica();
+    limparTelaHibrido();
+}
+
+int jogoMulti(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int PrimeiroJogador, int posicaoPecasMesa[56], int *PvalorEsquerda, int *PvalorDireita, int *PqtdPecasJogador,int *PqtdPecasComp)
+{
+    int vencedor = 0, acaoJogo = 0, mesaDireita = 28, mesaEsquerda = 26, escolha = 0;
+    //int i, j, k;
+    //int aux;
+    //int auxEndereco;
+    bool fimDoJogo = false;
+    bool fimDaJogadaJog = false;
+    bool fimDaJogadaComp = false;
+    //int auxJogadaComp;
+    posicaoPecasMesa[27] = 1;
+    int passouVezJog = 0;   // Determina se o jogador passou a vez
+    int passouVezComp = 0;  // Determina se o computador passou a vez
+    int passouVez = 0;      // Determina se os dois passaram a vez (se os dois passarem a vez, o jogo acaba e quem tiver menos peças ganha)
+    //int qtdPecasCompra = 0;
+    int ganhou;
+
+    while(!fimDoJogo){
+        fimDaJogadaJog = false;
+        fimDaJogadaComp = false;
+        passouVezJog = 0;
+        while(!fimDaJogadaJog){
+            passouVezJog = 0;
+            limparTelaHibrido();
+            mostrarMesa(pecas, pecasMesa, posicaoPecasMesa);
+            mostrarPecasJogador(pecas, pecasJogador);
+            acaoJogo =  menuJogada(acaoJogo);
+            switch(acaoJogo){
+                case 1:         // Jogar peca
+                    // Retirei escolhaPeca() e coloquei dentro de jogarPeca, porque precisa estar dentro de um loop
+                    jogarPeca(pecas, pecasJogador, pecasMesa, &mesaEsquerda, &mesaDireita, &PvalorEsquerda, &PvalorDireita, posicaoPecasMesa, &PqtdPecasJogador);
+                    setbuf(stdin, NULL);
+                    fimDaJogadaJog = true;
+                    //Logo em seguida deve vir a jogada do computador
+                    break;
+
+                case 2:         //  Comprar peca
+                    comprarPeca(pecasJogador, pecasCompra, &PqtdPecasJogador);
+                    //Mostrar aviso quando o jogador nao puder comprar mais, por ter pecas que podem ser jogadas
+                    break;
+
+                case 3:         // Salvar (Arquivo)
+                    break;
+
+                case 4:         // Menu principal
+                    desembaralharPecas(PID);
+                    fimDaJogadaJog = true;
+                    fimDoJogo = true;
+                    break;
+
+                case 5:
+                    passarVez();
+                    passouVezJog = 1;
+                    pausaEstrategica();
+                    fimDaJogadaJog = true;
+            }
+
+
+        }
+
+
+        limparTelaHibrido();
+        vezDoProximo();
+        pausaEstrategica();
+
+        fimDaJogadaJog = false;
+
+        while(!fimDaJogadaComp){
+            passouVezComp = 0;
+            limparTelaHibrido();
+            mostrarMesa(pecas, pecasMesa, posicaoPecasMesa);
+            mostrarPecasJogador(pecas, pecasComp);
+            acaoJogo =  menuJogada(acaoJogo);
+            switch(acaoJogo){
+                case 1:         // Jogar peca
+                    // Retirei escolhaPeca() e coloquei dentro de jogarPeca, porque precisa estar dentro de um loop
+                    jogarPeca(pecas, pecasComp, pecasMesa, &mesaEsquerda, &mesaDireita, &PvalorEsquerda, &PvalorDireita, posicaoPecasMesa, &PqtdPecasComp);
+                    setbuf(stdin, NULL);
+                    fimDaJogadaComp = true;
+                    //Logo em seguida deve vir a jogada do computador
+                    break;
+
+                case 2:         //  Comprar peca
+                    comprarPeca(pecasComp, pecasCompra, &PqtdPecasComp);
+                    //Mostrar aviso quando o jogador nao puder comprar mais, por ter pecas que podem ser jogadas
+                    break;
+
+                case 3:         // Salvar (Arquivo)
+                    break;
+
+                case 4:         // Menu principal
+                    desembaralharPecas(PID);
+                    fimDaJogadaComp = true;
+                    fimDoJogo = true;
+                    break;
+
+                case 5:
+                    passarVez();
+                    passouVezComp = 1;
+                    pausaEstrategica();
+                    fimDaJogadaComp = true;
+            }
+
+
+        }
+
+        limparTelaHibrido();
+        vezDoProximo();
+        pausaEstrategica();
+
+        passouVez = passouVezComp + passouVezJog;
+
+        if(passouVez == 2){     // Acaba o jogo
+            fimDoJogo = true;
+            ganhou = comparadorPecas(&PqtdPecasJogador, &PqtdPecasComp);
+            fimdeJogoMulti(ganhou);
+            // QUEM TIVER MAIS PEÇAS PERDE
+            vencedor = ganhou;
+        }
+
+    }
+
+    return vencedor;
 }
